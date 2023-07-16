@@ -1,0 +1,108 @@
+#mainContainer {
+  display: flex;
+  /* border: 2px solid red; */
+  height: 100vh;
+  width: 100vw;
+  flex-direction: row;
+}
+
+#leftContainer {
+  flex: 0.6;
+  background-color: #212121;
+  color: white;
+  padding: 5vw 0px;
+  text-align: center;
+}
+#heading {
+  font-size: 35px;
+  font-family: "Open Sans";
+}
+#leftContainer > div {
+  border-bottom: 1px solid grey;
+  margin: auto;
+  width: 95%;
+  margin-top: 9px;
+}
+#info {
+  margin: auto;
+  width: "95%";
+  /* marginTop: isMobile ? "50px" : "100px"; */
+  margin-top: 100px;
+  font-family: "karla";
+}
+
+#rightContainer {
+  /* border: 2px solid green; */
+  flex: 1;
+}
+#inputContainer {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#inputContainer > input {
+  width: 80%;
+  height: 8vw;
+  border-radius: 10px;
+  border: 2px solid grey;
+}
+#inputContainer > input::placeholder {
+  padding: 0px 2vw;
+  font-size: 2vw;
+  font-family: cursive;
+}
+#inputContainer > input[type="text"] {
+  color: #ff6300;
+  padding-left: 2vw;
+  font-size: 2vw;
+}
+#inputContainer > input:focus {
+  border: 2px solid #ff6300;
+  outline: none;
+}
+
+#loginButton {
+  height: 5vw;
+  width: 30%;
+  margin-top: 35px;
+  border: none;
+  color: white;
+  border-radius: 40px;
+  background-color: #ff6300;
+  align-self: flex-end;
+  margin-right: 95px;
+  font-family: "Tektur, cursive";
+  font-size: 25px;
+  outline: none;
+}
+
+@media (max-width: 425px) {
+  #mainContainer {
+    flex-direction: column;
+  }
+  #leftContainer > p {
+    font-size: 20px;
+  }
+  #loginButton {
+    height: 35px;
+    margin-right: 9vw;
+    font-size: 15px;
+    width: 30%;
+    margin-top: 35px;
+    border: none;
+    color: white;
+    border-radius: 40px;
+    background-color: #ff6300;
+    align-self: flex-end;
+    font-family: "Tektur, cursive";
+  }
+  #info {
+    margin: auto;
+    width: "95%";
+    /* marginTop: isMobile ? "50px" : "100px"; */
+    margin-top: 50px;
+    font-family: "karla";
+  }
+}
