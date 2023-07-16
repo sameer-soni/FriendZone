@@ -1,53 +1,63 @@
-import React from "react";
-import { useMediaQuery } from "react-responsive";
+import React, { useState } from "react";
 import "./Login.css";
+import axios from "axios";
+import pink from "../../pinkBg.png";
 
 function Login() {
+  const [email, setEmail] = useState("second");
+  const [password, setPassword] = useState("second");
+
+  const submit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/auth/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div id="mainContainer">
       <div id="leftContainer">
-        <p id="heading">Welcome to Social Media Website</p>
-        <div></div> {/* for underline border */}
-        <p id="info">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae,
-          necessitatibus repudiandae eius voluptatem repellendus alias corrupti
-          animi, aliquid ipsum iste perferendis ut! Sapiente, velit molestias
-          numquam laborum enim possimus ea.
-        </p>
-        <button
-          style={{
-            // border: "2px solid red",
-            margin: "auto",
-            width: "92%",
-            height: "20%",
-            borderRadius: "80px",
-            margin: "10vw 0px",
-            backgroundColor: "#ff6300",
-            fontSize: "30px",
-            border: "none",
-            // color: "white",
-            fontFamily: "Open Sans, cursive",
-          }}
-        >
-          SIGN UP
-        </button>
+        <p>Login to Your Account</p>
+        <form>
+          <input
+            type="text"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <br />
+          <input
+            type="text"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </form>
+        <button onClick={submit}>SIGN IN</button>
       </div>
 
       <div id="rightContainer">
-        <form
+        <img
+          src={pink}
+          alt=""
           style={{
-            // border: "2px solid green",
             height: "100%",
-            display: "flex",
+            width: "100%",
           }}
-        >
-          <div id="inputContainer">
-            <input type="text" placeholder="Email" />
-            <br />
-            <input type="text" placeholder="Password" />
-            <button id="loginButton">Login</button>
+        />
+        <div id="right-container-stuffs">
+          <div>
+            New Here? <button>Sign Up</button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

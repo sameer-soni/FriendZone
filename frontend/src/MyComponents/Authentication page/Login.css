@@ -1,108 +1,146 @@
 #mainContainer {
   display: flex;
-  /* border: 2px solid red; */
   height: 100vh;
   width: 100vw;
   flex-direction: row;
+  /* border: 2px solid blue; */
 }
 
 #leftContainer {
-  flex: 0.6;
-  background-color: #212121;
-  color: white;
+  flex: 0.8;
+  /* background-color: #212121; */
+  /* border: 2px solid green; */
   padding: 5vw 0px;
   text-align: center;
 }
-#heading {
-  font-size: 35px;
+#leftContainer > p {
   font-family: "Open Sans";
+  font-size: 3vw;
+  margin-top: 50px;
+  margin-left: 120px;
 }
-#leftContainer > div {
-  border-bottom: 1px solid grey;
-  margin: auto;
-  width: 95%;
-  margin-top: 9px;
-}
-#info {
-  margin: auto;
-  width: "95%";
-  /* marginTop: isMobile ? "50px" : "100px"; */
-  margin-top: 100px;
-  font-family: "karla";
-}
-
-#rightContainer {
+#leftContainer > form {
   /* border: 2px solid green; */
-  flex: 1;
+  margin-top: 50px;
 }
-#inputContainer {
-  margin: auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#leftContainer > form > input {
+  margin-left: 120px;
+  padding: 30px 20px;
+  width: 500px;
+  /* margin: 10px 0px; */
+  margin-top: 30px;
+  border-radius: 30px;
+  border: 1px solid rgb(206, 206, 206);
+  background-color: #f5edf4;
 }
-#inputContainer > input {
-  width: 80%;
-  height: 8vw;
-  border-radius: 10px;
-  border: 2px solid grey;
-}
-#inputContainer > input::placeholder {
-  padding: 0px 2vw;
-  font-size: 2vw;
-  font-family: cursive;
-}
-#inputContainer > input[type="text"] {
-  color: #ff6300;
-  padding-left: 2vw;
-  font-size: 2vw;
-}
-#inputContainer > input:focus {
-  border: 2px solid #ff6300;
+#leftContainer > form > input:focus {
+  border: 2px solid rgb(255, 0, 149);
   outline: none;
 }
-
-#loginButton {
-  height: 5vw;
-  width: 30%;
-  margin-top: 35px;
+#leftContainer > button {
+  margin-left: 120px;
+  margin-top: 40px;
+  padding: 15px 80px;
+  border-radius: 40px;
+  background-color: #ff0d86;
   border: none;
   color: white;
+}
+#leftContainer > button:hover {
+  background-color: #ff0db6;
+  cursor: pointer;
+}
+#rightContainer {
+  /* border: 2px solid #0dff41; */
+  flex: 1;
+  overflow: hidden;
+}
+#right-container-stuffs {
+  /* border: 2px solid blue; */
+  position: absolute;
+  top: 40vh;
+  right: 10vw;
+  font-size: 3vw;
+  font-family: "Open Sans";
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#right-container-stuffs > div > button {
+  background-color: white;
+  margin: 70px 30px;
+  height: 50px;
+  width: 120px;
   border-radius: 40px;
-  background-color: #ff6300;
-  align-self: flex-end;
-  margin-right: 95px;
-  font-family: "Tektur, cursive";
-  font-size: 25px;
-  outline: none;
+  border: none;
+}
+#right-container-stuffs > div > button:hover {
+  background-color: #f9b1ff;
+  cursor: pointer;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 1000px) {
   #mainContainer {
-    flex-direction: column;
+    /* border: 2px solid rgb(183, 0, 255); */
+    flex-direction: column-reverse;
+    width: 120vw;
   }
   #leftContainer > p {
+    font-family: "Open Sans";
+    font-size: 25px;
+    margin-top: 30px;
+    margin-left: -50px;
+  }
+  #leftContainer > form {
+    /* border: 2px solid green; */
+    margin-top: 30px;
+  }
+  #leftContainer > form > input {
+    margin-left: -50px;
+    width: 270px;
+    padding: 20px 20px;
+  }
+  #leftContainer > button {
+    margin-left: -50px;
+    /* margin: 90px 0px; */
+    margin-top: 60px;
+    margin-bottom: 130px;
+  }
+  #rightContainer {
+    background-color: #ff0d86;
+  }
+  #rightContainer > img {
+    display: none;
+  }
+  #right-container-stuffs {
+    /* border: 2px solid blue; */
+    color: black;
+    position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+  }
+  /* #rightContainer > div {
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: 11vh;
+    left: 20vw;
     font-size: 20px;
+    display: inline;
+    flex-direction: column;
+    justify-content: center;
   }
-  #loginButton {
-    height: 35px;
-    margin-right: 9vw;
-    font-size: 15px;
-    width: 30%;
-    margin-top: 35px;
-    border: none;
-    color: white;
+  #rightContainer > div > button {
+    background-color: white;
+    top: -31px;
+    margin: 10px 130px;
+    width: 80px;
+    height: 20px;
     border-radius: 40px;
-    background-color: #ff6300;
-    align-self: flex-end;
-    font-family: "Tektur, cursive";
-  }
-  #info {
-    margin: auto;
-    width: "95%";
-    /* marginTop: isMobile ? "50px" : "100px"; */
-    margin-top: 50px;
-    font-family: "karla";
-  }
+    border: none;
+    position: relative;
+  } */
 }
