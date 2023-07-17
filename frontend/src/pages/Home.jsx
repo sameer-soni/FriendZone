@@ -1,5 +1,11 @@
+import { Loader } from "../components";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div className="h-full">
+      <Loader />
+    </div>
+  );
 };
 
 export default Home;
