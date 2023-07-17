@@ -10,7 +10,7 @@ function Login() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+      const { data } = await axios.post(
         "http://localhost:8000/auth/login",
         {
           email,
@@ -18,7 +18,8 @@ function Login() {
         },
         { withCredentials: true }
       );
-      console.log(response);
+      console.log(data);
+      localStorage.setItem("userInfo", JSON.stringify(data.user));
     } catch (error) {
       console.log(error);
     }
