@@ -13,3 +13,7 @@ export { default as ImageSelector } from "./ImageSelector";
 export { default as InputFile } from "./InputFile";
 export { default as DeveloperSlogan } from "./DeveloperSlogan";
 export { default as Loader } from "./Loader.jsx";
+export { default as Sidebar } from "./Sidebar";
+export { default as MobileMenu } from "./MobileMenu";
+export { default as Header } from "./Header";
+export { default as Breadcrumb } from "./Breadcrumb";

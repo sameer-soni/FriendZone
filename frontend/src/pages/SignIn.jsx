@@ -8,13 +8,15 @@ import {
   AuthContainer,
   DeveloperSlogan,
 } from "../components";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const submitHandler = async (event) => {
     event.preventDefault();
+    navigate("/");
   };
   return (
     <div className="h-screen w-screen bg-my-image bg-cover bg-top flex flex-col items-center justify-center">
