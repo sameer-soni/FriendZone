@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       <ChakraProvider>
-        <Main />
-        {/* <Login /> */}
+        {/* <Main /> */}
+        <Login />
       </ChakraProvider>
     </>
   );
