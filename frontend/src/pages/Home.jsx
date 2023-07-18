@@ -1,40 +1,54 @@
-const Home = () => {
+import { useState } from "react";
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import { Logo, MobileSidebar } from "../components";
+
+export default function Home() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <div className="mx-auto w-full max-w-7xl flex-grow lg:flex xl:px-8">
-      {/* Left sidebar & main wrapper */}
-      <div className="min-w-0 flex-1 bg-white xl:flex">
-        <div className="border-b border-gray-200 bg-white xl:w-64 xl:flex-shrink-0 xl:border-b-0 xl:border-r xl:border-gray-200">
-          <div className="h-full py-6 pl-4 pr-6 sm:pl-6 lg:pl-8 xl:pl-0">
-            {/* Start left column area */}
-            <div className="relative h-full" style={{ minHeight: "12rem" }}>
-              <div className="absolute inset-0 rounded-lg border-2 border-dashed border-gray-200" />
-            </div>
-            {/* End left column area */}
-          </div>
-        </div>
+    <>
+      <div className="flex h-screen w-screen">
+        <MobileSidebar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        />
 
-        <div className="bg-white lg:min-w-0 lg:flex-1">
-          <div className="h-full py-6 px-4 sm:px-6 lg:px-8">
-            {/* Start main area*/}
-            <div className="relative h-full" style={{ minHeight: "36rem" }}>
-              <div className="absolute inset-0 rounded-lg border-2 border-dashed border-gray-200" />
+        <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
+          <div className="lg:hidden">
+            <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 py-1.5">
+              <div>
+                <Logo />
+              </div>
+              <div>
+                <button
+                  type="button"
+                  className="-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900"
+                  onClick={() => setSidebarOpen(true)}
+                >
+                  <span className="sr-only">Open sidebar</span>
+                  <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
             </div>
-            {/* End main area */}
+          </div>
+          <div className="relative z-0 flex flex-1 overflow-hidden">
+            <main className="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+              {/* Start main area*/}
+              <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
+                <div className="h-full rounded-lg border-2 border-dashed border-red-200" />
+              </div>
+              {/* End main area */}
+            </main>
+            <aside className="relative hidden w-96 flex-shrink-0 overflow-y-auto border-l border-gray-200 xl:flex xl:flex-col">
+              {/* Start secondary column (hidden on smaller screens) */}
+              <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
+                <div className="h-full rounded-lg border-2 border-dashed border-gray-200" />
+              </div>
+              {/* End secondary column */}
+            </aside>
           </div>
         </div>
       </div>
-
-      <div className="bg-gray-50 pr-4 sm:pr-6 lg:flex-shrink-0 lg:border-l lg:border-gray-200 lg:pr-8 xl:pr-0">
-        <div className="h-full py-6 pl-6 lg:w-80">
-          {/* Start right column area */}
-          <div className="relative h-full" style={{ minHeight: "16rem" }}>
-            <div className="absolute inset-0 rounded-lg border-2 border-dashed border-gray-200" />
-          </div>
-          {/* End right column area */}
-        </div>
-      </div>
-    </div>
+    </>
   );
-};
-
-export default Home;
+}

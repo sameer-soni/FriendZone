@@ -1,19 +1,24 @@
 import {
-  CogIcon,
+  CalendarIcon,
   HomeIcon,
-  PhotoIcon,
-  RectangleStackIcon,
-  Squares2X2Icon,
+  MagnifyingGlassCircleIcon,
+  MapIcon,
+  MegaphoneIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
 
-export const sidebarNavigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
-  { name: "All Files", href: "#", icon: Squares2X2Icon, current: false },
-  { name: "Photos", href: "#", icon: PhotoIcon, current: false },
-  { name: "Shared", href: "#", icon: UserGroupIcon, current: false },
-  { name: "Albums", href: "#", icon: RectangleStackIcon, current: false },
-  { name: "Settings", href: "#", icon: CogIcon, current: false },
+export const navigation = [
+  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
+  { name: "Teams", href: "#", icon: UserGroupIcon, current: false },
+  {
+    name: "Directory",
+    href: "#",
+    icon: MagnifyingGlassCircleIcon,
+    current: false,
+  },
+  { name: "Announcements", href: "#", icon: MegaphoneIcon, current: false },
+  { name: "Office Map", href: "#", icon: MapIcon, current: false },
 ];
 
 export const userNavigation = [
