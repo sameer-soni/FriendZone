@@ -6,7 +6,7 @@ const Layout = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!JSON.parse(localStorage.getItem("userInfo"))) {
-      // navigate("/signin");
+      navigate("/signin");
     }
   }, []);
 

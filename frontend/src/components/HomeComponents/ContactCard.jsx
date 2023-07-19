@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 const ContactCard = ({ picture, name }) => {
-  console.log(picture);
   return (
     <div className="flex flex-row items-center justify-start gap-2 mt-6">
       <img
