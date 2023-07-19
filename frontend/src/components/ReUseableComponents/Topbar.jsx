@@ -1,7 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { ButtonLink, SearchBar } from "../index";
-import ProfileDropDown from "../ProfileDropDown";
+import ProfileDropDown from "./ProfileDropDown";
 
 const Topbar = () => {
   return (
