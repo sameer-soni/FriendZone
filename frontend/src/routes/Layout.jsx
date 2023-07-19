@@ -1,25 +1,24 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { Sidebar, Topbar } from "../components";
+import { Sidebar, Topbar, MobileBottomBar } from "../components";
 import { useEffect } from "react";
 
 const Layout = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!JSON.parse(localStorage.getItem("userInfo"))) {
-      navigate("/signin");
+      // navigate("/signin");
     }
   }, []);
 
   return (
-    <>
-      <div className="flex flex-col h-screen w-screen bg-gray-100/100">
+    <div className="flex h-screen bg-gray-100">
+      <Sidebar className="flex-shrink-0" />
+      <div className="flex flex-col flex-1">
         <Topbar />
-        <div className="flex mt-2">
-          <Sidebar />
-          <Outlet />
-        </div>
+        <Outlet />
+        <MobileBottomBar />
       </div>
-    </>
+    </div>
   );
 };
 

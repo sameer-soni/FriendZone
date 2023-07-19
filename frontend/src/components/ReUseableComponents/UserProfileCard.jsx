@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const UserProfileCard = () => {
   return (
-    <div className="border-r border-gray-300 flex flex-shrink-0 bg-white rounded-none md:rounded-md p-4 hover:bg-primary-shade group transition duration-500 ease-in-out">
-      <Link to="#" className=" block w-full flex-shrink-0">
+    <div className="flex flex-shrink-0 bg-primary-shade rounded-none md:rounded-md  hover:bg-gray-300 group transition duration-500 ease-in-out">
+      <Link to="#" className=" block w-full flex-shrink-0 p-4">
         <div className="flex items-center">
           <div>
             <img
@@ -13,10 +13,10 @@ const UserProfileCard = () => {
             />
           </div>
           <div className="ml-3">
-            <p className="text-sm font-medium text-gray-700 group-hover:text-white">
+            <p className="text-sm font-medium text-white group-hover:text-gray-700 ">
               Whitney Francis
             </p>
-            <p className="text-xs font-medium text-gray-500 group-hover:text-white">
+            <p className="text-xs font-medium text-white group-hover:text-gray-500">
               View profile
             </p>
           </div>

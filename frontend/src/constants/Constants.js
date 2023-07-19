@@ -5,20 +5,24 @@ import {
   MapIcon,
   MegaphoneIcon,
   UserGroupIcon,
+  PhotoIcon,
+  UserIcon,
+  BellIcon,
+  CogIcon,
 } from "@heroicons/react/24/outline";
 
 export const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Teams", href: "#", icon: UserGroupIcon, current: false },
+  { name: "Home", href: "#", icon: HomeIcon, current: true },
+  { name: "Photos", href: "#", icon: PhotoIcon, current: false },
+  { name: "Explore", href: "#", icon: UserGroupIcon, current: false },
   {
-    name: "Directory",
+    name: "Profile",
     href: "#",
-    icon: MagnifyingGlassCircleIcon,
+    icon: UserIcon,
     current: false,
   },
-  { name: "Announcements", href: "#", icon: MegaphoneIcon, current: false },
-  { name: "Office Map", href: "#", icon: MapIcon, current: false },
+  { name: "Notifications", href: "#", icon: BellIcon, current: false },
+  { name: "Settings", href: "#", icon: CogIcon, current: false },
 ];
 
 export const userNavigation = [
