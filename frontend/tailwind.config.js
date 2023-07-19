@@ -4,7 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary-shade": "#4D46B5",
+        "primary-shade": "rgb(99 102 241)",
+        "seconday-shade": "rgb(31 41 55)",
+        "tertiary-shade": "rgb(156 163 175)",
+        "quaternary-shade": "rgb(107 114 128)",
       },
       backgroundImage: {
         "my-image": "url('./src/assets/Login-Sign-BackgroundImage.avif')",
