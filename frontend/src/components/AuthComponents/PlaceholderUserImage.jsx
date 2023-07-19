@@ -1,4 +1,4 @@
-import userPlaceholder from "../assets/placeholderUserImage.png";
+import userPlaceholder from "../../assets/placeholderUserImage.png";
 
 const PlaceholderUserImage = () => {
   return (

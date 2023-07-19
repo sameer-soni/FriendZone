@@ -11,6 +11,9 @@ import {
   ImageSelector,
   InputFile,
 } from "../components";
+import { useToast } from "@chakra-ui/react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -19,6 +22,10 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [image, setImage] = useState("");
 
+  const toast = useToast();
+
+  const navigate = useNavigate();
+
   const resetForm = () => {
     setUsername("");
     setEmail("");
@@ -26,8 +33,53 @@ const Signup = () => {
     setConfirmPassword("");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (password !== confirmPassword) {
+      toast({
+        title: `password and confirm password doesn't match`,
+        status: "error",
+        duration: 1800,
+        position: "top",
+        isClosable: true,
+      });
+      return;
+    }
+
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8000/auth/signup",
+        {
+          username,
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
+      console.log(data);
+
+      toast({
+        title: `${data.message}. Now, login`,
+        status: "success",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+
+      navigate("/signin");
+    } catch (error) {
+      console.log(error);
+
+      toast({
+        title: `${error.response.data.error}`,
+        status: "error",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+    }
+
     resetForm();
   };
 

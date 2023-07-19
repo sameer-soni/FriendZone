@@ -6,7 +6,7 @@ const TextLink = ({ text, isUnderlined, to, children }) => {
     <div className="text-sm">
       <Link
         to={to}
-        className={`flex flex-row justify-center items-center font-medium text-indigo-500 hover:text-indigo-600 ${
+        className={`flex flex-row justify-center items-center font-medium text-fuchsia-300 hover:text-fuchsia-600 ${
           isUnderlined ? "underline underline-offset-4" : ""
         }`}
       >

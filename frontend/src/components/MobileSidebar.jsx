@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { navigation } from "../constants/Constants";
-import Logo from "./Logo";
+import Logo from "./AuthComponents/Logo";
 import UserProfileCard from "./UserProfileCard";
 
 const MobileSidebar = ({ sidebarOpen, setSidebarOpen }) => {

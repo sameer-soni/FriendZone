@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { InputText, Label } from "./index";
+import { InputText, Label } from "../index";
 
 const FormInput = ({ labelName, id, name, type, value, onChange }) => {
   return (

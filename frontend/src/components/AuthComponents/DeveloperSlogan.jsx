@@ -4,7 +4,7 @@ const DeveloperSlogan = () => {
     <div className="flex flex-row items-center justify-start my-4 text-sm text-white">
       Developed by
       <a
-        href="https://github.com/Mohsin-mw"
+        href="https://github.com/sameer-soni"
         target="_blank"
         className="font-bold cursor-pointer flex flex-row-reverse  items-center justify-center mx-1 "
         rel="noreferrer"
@@ -13,7 +13,7 @@ const DeveloperSlogan = () => {
       </a>
       With
       <span className="flex flex-row items-center justify-center ml-1">
-        <HeartIcon className="h-4 w-4 text-indigo-500" />
+        <HeartIcon className="h-4 w-4 text-fuchsia-600" />
       </span>
     </div>
   );

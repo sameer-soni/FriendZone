@@ -1,12 +1,43 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useToast } from "@chakra-ui/react";
 
 const ProfileDropDown = () => {
+  const navigate = useNavigate();
+  const toast = useToast();
+
+  const handleLogout = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8000/auth/logout",
+        null,
+        {
+          withCredentials: true,
+        }
+      );
+
+      localStorage.removeItem("userInfo");
+
+      toast({
+        title: `${data.message}`,
+        status: "success",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+
+      navigate("/signin");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Menu as="div" className="relative ml-4 flex-shrink-0">
       <div>
-        <Menu.Button className="flex rounded-full bg-indigo-700 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700">
+        <Menu.Button className="sm:mr-5 flex rounded-full bg-indigo-700 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700">
           <span className="sr-only">Open user menu</span>
           <img
             className="h-8 w-8 rounded-full"
@@ -51,6 +82,7 @@ const ProfileDropDown = () => {
               className={
                 "block px-4 py-2 text-sm text-gray-700 hover:bg-primary-shade hover:text-white"
               }
+              onClick={handleLogout}
             >
               Logout
             </Link>

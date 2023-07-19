@@ -7,7 +7,7 @@ const Topbar = () => {
   return (
     <Disclosure as="nav" className="flex-shrink-0 bg-white">
       <>
-        <div className="mx-auto  px-2 sm:px-4 ">
+        <div className="mx-auto  px-2 sm:px-4 border-b border-gray-300 ">
           <div className="relative flex h-16 items-center justify-between">
             <div className=" items-center px-2 hidden md:block ">
               <LogoWithName />

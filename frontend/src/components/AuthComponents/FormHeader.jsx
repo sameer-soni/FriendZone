@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { TextLink } from "./index";
+import { TextLink } from "../index";
 
 const FormHeader = ({ headline, text, isUnderlined, to }) => {
   return (

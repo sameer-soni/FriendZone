@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const UserProfileCard = () => {
   return (
-    <div className="flex flex-shrink-0 bg-gray-200 rounded-none md:rounded-md p-4 hover:bg-primary-shade group transition duration-500 ease-in-out">
+    <div className="border-r border-gray-300 flex flex-shrink-0 bg-white rounded-none md:rounded-md p-4 hover:bg-primary-shade group transition duration-500 ease-in-out">
       <Link to="#" className=" block w-full flex-shrink-0">
         <div className="flex items-center">
           <div>

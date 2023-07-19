@@ -3,8 +3,8 @@ const secretKey = "this is the secret key for now";
 const User = require("../Models/userSchema");
 
 const signup = async (req, res) => {
-  const { name, email, password } = req.body;
-  if (!name || !email || !password) {
+  const { username, email, password } = req.body;
+  if (!username || !email || !password) {
     return res.status(400).json({ error: "empty field!!" });
   }
 
@@ -18,7 +18,7 @@ const signup = async (req, res) => {
     }
 
     const newUser = new User({
-      name,
+      username,
       email,
       password,
     });
@@ -39,7 +39,7 @@ const login = async (req, res) => {
     //finding if user exists or not..
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ error: "user doesn't exist" });
+      return res.status(400).json({ error: "email/password is invalid" }); //email doesn't exist
     }
 
     if (password != user.password) {
@@ -90,4 +90,9 @@ const authVerify = async (req, res, next) => {
   next();
 };
 
-module.exports = { signup, login, authVerify };
+const logout = async (req, res) => {
+  res.clearCookie("token", { httpOnly: true });
+  res.status(200).json({ message: "Logout Successful" });
+};
+
+module.exports = { signup, login, authVerify, logout };
