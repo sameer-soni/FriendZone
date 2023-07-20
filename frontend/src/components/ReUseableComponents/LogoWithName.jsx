@@ -1,4 +1,4 @@
-import { Logo } from "./index.js";
+import { Logo } from "../index.js";
 
 const LogoWithName = () => {
   return (
