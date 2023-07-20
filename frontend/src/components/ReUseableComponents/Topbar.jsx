@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import { ButtonLink, SearchBar } from "../index";
+import { ButtonLink, LogoWithName, SearchBar } from "../index";
 import ProfileDropDown from "./ProfileDropDown";
 
 const Topbar = () => {
@@ -9,7 +9,9 @@ const Topbar = () => {
       <>
         <div className="mx-auto  px-2 sm:px-4 border-b border-gray-300 ">
           <div className="relative flex h-16 items-center justify-between">
-            <div className=" items-center px-2 hidden md:block "></div>
+            <div className=" items-center px-2 hidden md:block ">
+              <LogoWithName />
+            </div>
 
             <div className="w-full lg:w-1/3">
               <div className="flex items-center justify-end">

@@ -1,13 +1,11 @@
 import { classNames } from "../../utils/Helpers";
 import { navigation } from "../../constants/Constants";
 import UserProfileCard from "./UserProfileCard";
-import { LogoWithName } from "../index";
 
 const Sidebar = () => {
   return (
     <div className="hidden lg:flex lg:flex-shrink-0 border-gray-300 border-r py-1">
       <div className="flex w-64 flex-col">
-        <LogoWithName />
         <div className="flex min-h-0 flex-1 flex-col  bg-gray-100 mx-2 ">
           <UserProfileCard />
           <div className="flex flex-1 flex-col overflow-y-auto pb-4 ">
