@@ -80,7 +80,7 @@ const authVerify = async (req, res, next) => {
       }
       // console.log(user);
       req.user = user;
-      res.status(200).json({ user: user });
+      // res.status(200).json({ user: user });
     } catch (error) {
       return res.status(400).json({ error });
     }
