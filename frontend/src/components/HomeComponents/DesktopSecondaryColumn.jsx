@@ -25,7 +25,7 @@ const DesktopSecondaryColumn = () => {
 
   return (
     <div>
-      <div className="border border-b-gray-300 px-3 py-4">
+      <div className="border border-b-gray-300 px-3 py-4 ">
         <div className="flex flex-row items-center justify-between text-tertiary-shade uppercase  ">
           <p>Recent</p>
           <NotificationInNumber total={friendReq?.length} />
@@ -36,7 +36,7 @@ const DesktopSecondaryColumn = () => {
           <RequestFeed key={user.id} user={user} />
         ))}
       </div>
-      <div className="px-3 py-4">
+      <div className="px-3 py-4 overflow-x-hidden">
         <div className="flex flex-row items-center justify-between text-dark-shade uppercase">
           <p>CONTACTS</p>
           <NotificationInNumber total={randomNamesWithPictures.length} />

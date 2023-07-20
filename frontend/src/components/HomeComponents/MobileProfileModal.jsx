@@ -1,10 +1,9 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import Button from "../ReUseableComponents/Button";
 
-const MobileProfileModal = ({ open, setOpen }) => {
+const MobileProfileModal = ({ open, setOpen, handleLogout }) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-20" onClose={setOpen}>
@@ -75,22 +74,16 @@ const MobileProfileModal = ({ open, setOpen }) => {
                         </div>
                       </div>
                       <div className="flex flex-row items-center justify-center w-full  px-8 mt-8">
-                        <Button className="bg-primary-shade hover:bg-primary-shade-v2 text-white">
+                        <Button
+                          clickHandler={handleLogout}
+                          className="bg-primary-shade hover:bg-primary-shade-v2 text-white focus:outline-none"
+                        >
                           Log Out
                         </Button>
                       </div>
                     </div>
                   </div>
                 </div>
-                {/* <div className="mt-5 sm:mt-6">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm"
-                    onClick={() => setOpen(false)}
-                  >
-                    Go back to dashboard
-                  </button>
-                </div> */}
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -103,6 +96,7 @@ const MobileProfileModal = ({ open, setOpen }) => {
 MobileProfileModal.propTypes = {
   open: PropTypes.bool.isRequired,
   setOpen: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired,
 };
 
 export default MobileProfileModal;

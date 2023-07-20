@@ -55,7 +55,11 @@ const ProfileDropDown = () => {
           />
         </div>
       </div>
-      <MobileProfileModal open={open} setOpen={setOpen} />
+      <MobileProfileModal
+        open={open}
+        setOpen={setOpen}
+        handleLogout={handleLogout}
+      />
     </Menu>
   );
 };
