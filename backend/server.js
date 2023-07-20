@@ -6,6 +6,8 @@ const cookieParser = require("cookie-parser");
 
 // Routers
 const authRouter = require("./Routes/auth");
+const { userRouter } = require("./Routes/user");
+const { friendRouter } = require("./Routes/friend");
 
 //middelwares
 app.use(express.json());
@@ -14,7 +16,6 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 //db
 const mongoose = require("mongoose");
-const { authVerify } = require("./Controllers/authController");
 const db =
   "mongodb+srv://Sameer:2FvImrCAExwvj6KF@cluster0.ov2ktdn.mongodb.net/?retryWrites=true&w=majority";
 
@@ -35,8 +36,10 @@ mongoose
   });
 
 app.use("/auth", authRouter);
-app.post("/test", authVerify, (req, res) => {
-  console.log("in test");
-  const user = req.user;
-  console.log(user);
-});
+app.use("/user", userRouter);
+app.use("/friend", friendRouter);
+// app.post("/test", authVerify, (req, res) => {
+//   console.log("in test");
+//   const user = req.user;
+//   console.log(user);
+// });

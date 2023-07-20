@@ -21,6 +21,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const toast = useToast();
 
@@ -31,6 +32,38 @@ const Signup = () => {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
+  };
+
+  //for image (profile pic) upload
+  const pfpUpload = async (pic) => {
+    setLoading(true);
+
+    console.log("pic uploading...");
+    if (pic === undefined) {
+      alert("pic is undefined");
+      return;
+    }
+    if (
+      pic.type === "image/png" ||
+      pic.type === "image/jpeg" ||
+      pic.type === "image/jpeg"
+    ) {
+      const data = new FormData();
+      data.append("file", pic);
+      data.append("upload_preset", "socialMeidaProject");
+      data.append("cloud_name", "dvjzuiyp1 ");
+      fetch("https://api.cloudinary.com/v1_1/dvjzuiyp1/image/upload", {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setImage(data.url.toString());
+          setLoading(false);
+        });
+
+      console.log(res);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -54,6 +87,7 @@ const Signup = () => {
           username,
           email,
           password,
+          pic: image,
         },
         { withCredentials: true }
       );
@@ -135,12 +169,16 @@ const Signup = () => {
                   <InputFile
                     id="userPhoto"
                     name="userPhoto"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    onChange={(e) => pfpUpload(e.target.files[0])}
                   />
                 </ImageSelector>
               </div>
             </div>
-            <PrimaryButton type="submit">Sign Up</PrimaryButton>
+            {/* <PrimaryButton type="submit">Sign Up</PrimaryButton> */}
+
+            {loading === true ? null : (
+              <PrimaryButton type="submit">Sign Up</PrimaryButton>
+            )}
           </Form>
         </div>
       </AuthContainer>

@@ -3,7 +3,7 @@ const secretKey = "this is the secret key for now";
 const User = require("../Models/userSchema");
 
 const signup = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, pic } = req.body;
   if (!username || !email || !password) {
     return res.status(400).json({ error: "empty field!!" });
   }
@@ -17,14 +17,28 @@ const signup = async (req, res) => {
         .json({ error: "user already exist with this email" });
     }
 
-    const newUser = new User({
-      username,
-      email,
-      password,
-    });
-    await newUser.save();
+    if (!pic) {
+      const newUser = new User({
+        username,
+        email,
+        password,
+      });
+      console.log("no pic block");
+      await newUser.save();
+      return res.status(200).json({ message: "user created", user: newUser });
+    }
 
-    return res.status(200).json({ message: "user created", user: newUser });
+    if (pic) {
+      console.log("pic block");
+      const newUser = new User({
+        username,
+        email,
+        password,
+        pic,
+      });
+      await newUser.save();
+      return res.status(200).json({ message: "user created", user: newUser });
+    }
   } catch (error) {
     return res.status(400).json({ error });
   }
@@ -80,7 +94,7 @@ const authVerify = async (req, res, next) => {
       }
       // console.log(user);
       req.user = user;
-      res.status(200).json({ user: user });
+      // res.status(200).json({ user: user });
     } catch (error) {
       return res.status(400).json({ error });
     }
