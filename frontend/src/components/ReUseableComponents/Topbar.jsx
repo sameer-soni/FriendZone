@@ -1,7 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { ButtonLink, LogoWithName, SearchBar } from "../index";
-import ProfileDropDown from "./ProfileDropDown";
 
 const Topbar = () => {
   return (
@@ -21,7 +20,6 @@ const Topbar = () => {
                   to="#"
                   Icon={<PlusIcon width="16px" height="16px" />}
                 />
-                <ProfileDropDown />
               </div>
             </div>
           </div>

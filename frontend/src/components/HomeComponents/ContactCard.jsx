@@ -8,7 +8,7 @@ const ContactCard = ({ picture, name }) => {
         src={picture}
         alt="Contact's Profile"
       />
-      <div className="font-bold group-hover:text-primary-shade duration-500 ">
+      <div className="font-medium group-hover:text-primary-shade duration-500 text-dark-shade ">
         {name}
       </div>
     </div>

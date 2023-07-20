@@ -32,7 +32,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                       <div className="flex items-start justify-between">
                         <h2
                           id="slide-over-heading"
-                          className="text-lg font-medium text-gray-900"
+                          className="text-lg font-medium text-dark-shade"
                         >
                           Profile
                         </h2>
@@ -63,7 +63,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                             <div className="sm:flex-1">
                               <div>
                                 <div className="flex items-center">
-                                  <h3 className="text-xl font-bold text-gray-900 sm:text-2xl">
+                                  <h3 className="text-xl font-bold text-dark-shade sm:text-2xl">
                                     Whitney Francis
                                   </h3>
                                   <span className="ml-2.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400">
@@ -92,7 +92,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                             <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
                               Bio
                             </dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            <dd className="mt-1 text-sm text-dark-shade sm:col-span-2">
                               <p>
                                 Hi, I'm Whitney Francis and I'm a programmer. I
                                 specialize in developing mobile applications and
@@ -106,7 +106,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                             <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
                               Location
                             </dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            <dd className="mt-1 text-sm text-dark-shade sm:col-span-2">
                               New York, NY, USA
                             </dd>
                           </div>
@@ -114,7 +114,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                             <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
                               Email
                             </dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            <dd className="mt-1 text-sm text-dark-shade sm:col-span-2">
                               whitneyFrancis@gmail.com
                             </dd>
                           </div>
@@ -122,7 +122,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                             <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
                               Birthday
                             </dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            <dd className="mt-1 text-sm text-dark-shade sm:col-span-2">
                               <time dateTime="1988-06-23">June 23, 1988</time>
                             </dd>
                           </div>

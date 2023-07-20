@@ -9,6 +9,7 @@ export default {
         "seconday-shade": "rgb(31 41 55)",
         "tertiary-shade": "rgb(156 163 175)",
         "quaternary-shade": "rgb(107 114 128)",
+        "dark-shade": "#111827",
       },
       backgroundImage: {
         "my-image": "url('./src/assets/Login-Sign-BackgroundImage.avif')",

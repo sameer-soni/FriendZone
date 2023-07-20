@@ -37,7 +37,7 @@ const DesktopSecondaryColumn = () => {
         ))}
       </div>
       <div className="px-3 py-4">
-        <div className="flex flex-row items-center justify-between text-tertiary-shade uppercase">
+        <div className="flex flex-row items-center justify-between text-dark-shade uppercase">
           <p>CONTACTS</p>
           <NotificationInNumber total={randomNamesWithPictures.length} />
         </div>
