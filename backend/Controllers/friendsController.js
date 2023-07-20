@@ -29,7 +29,12 @@ const send_request = async (req, res) => {
       return res.status(400).json({ error: "Friend request already sent" });
     }
 
-    reciever.friends.push({ user: sender._id, name: sender.username });
+    reciever.friends.push({
+      user: sender._id,
+      name: sender.username,
+      email: sender.email,
+      pic: sender.pic,
+    });
     await reciever.save();
 
     return res.json({ message: "Friend request sent successfully", reciever });

@@ -1,20 +1,16 @@
 import PropTypes from "prop-types";
 import { Button } from "../index";
 
-const RequestFeed = ({ activity }) => {
+const RequestFeed = ({ key, user }) => {
   return (
     <div>
-      <div key={activity.id} className="py-4">
+      <div key={key} className="py-4">
         <div className="flex space-x-3 items-center">
-          <img
-            className="h-12 w-12 rounded-md"
-            src={activity.person.imageUrl}
-            alt=""
-          />
+          <img className="h-12 w-12 rounded-md" src={user.pic} alt="" />
           <div className="flex-1 space-y-1">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-medium">{activity.person.name}</h3>
-              <p className="text-sm text-gray-500">{activity.time}</p>
+              <h3 className="text-sm font-medium">{user.name}</h3>
+              <p className="text-sm text-gray-500">{user.time}</p>
             </div>
             <p className="text-sm text-gray-500">
               Wants to add into your friends list

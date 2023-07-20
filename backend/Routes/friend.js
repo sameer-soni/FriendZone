@@ -7,6 +7,6 @@ const {
 const router = express.Router();
 
 router.post("/sendFriendRequest", authVerify, send_request);
-router.post("/fetchFriendRequest", authVerify, fetch_requests);
+router.get("/fetchFriendRequest", authVerify, fetch_requests);
 
 module.exports.friendRouter = router;
