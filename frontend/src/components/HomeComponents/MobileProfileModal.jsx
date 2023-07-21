@@ -1,9 +1,11 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import PropTypes from "prop-types";
 import Button from "../ReUseableComponents/Button";
+import { MyContext } from "../../context/MyContext";
 
 const MobileProfileModal = ({ open, setOpen, handleLogout }) => {
+  const { loggedUser } = useContext(MyContext);
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-20" onClose={setOpen}>
@@ -38,10 +40,10 @@ const MobileProfileModal = ({ open, setOpen, handleLogout }) => {
                   <div>
                     <div className="relative flex flex-col items-center justify-center ">
                       <div className="absolute -top-20 w-36 h-36 border-8 border-white drop-shadow-2xl rounded-full overflow-hidden ">
-                        <img src="https://images.unsplash.com/photo-1588516903720-8ceb67f9ef84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=744&q=80" />
+                        <img src={loggedUser?.pic} />
                       </div>
                       <div className="mt-20 text-dark-shade text-1xl font-bold">
-                        Whitney Francis
+                        {loggedUser?.username}
                       </div>
                       <div className="flex flex-row items-center justify-between w-full mt-8 px-8">
                         <div className="flex flex-col items-start justify-center">
@@ -49,7 +51,7 @@ const MobileProfileModal = ({ open, setOpen, handleLogout }) => {
                             Email
                           </div>
                           <div className="text-dark-shade font-semibold text-sm">
-                            whitney@gmail.com
+                            {loggedUser?.email}
                           </div>
                         </div>
                         <div className="flex flex-col items-start justify-center">

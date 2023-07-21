@@ -1,10 +1,12 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import Button from "../ReUseableComponents/Button";
+import { MyContext } from "../../context/MyContext";
 
 const DesktopProfileModal = ({ open, setOpen }) => {
+  const { loggedUser } = useContext(MyContext);
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -55,7 +57,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                           <div className="relative h-40 sm:h-56">
                             <img
                               className="absolute h-full w-full object-cover"
-                              src="https://images.unsplash.com/photo-1501031170107-cfd33f0cbdcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&h=600&q=80"
+                              src={loggedUser?.pic}
                               alt=""
                             />
                           </div>
@@ -64,14 +66,14 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                               <div>
                                 <div className="flex items-center">
                                   <h3 className="text-xl font-bold text-dark-shade sm:text-2xl">
-                                    Whitney Francis
+                                    {loggedUser?.username}
                                   </h3>
                                   <span className="ml-2.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400">
                                     <span className="sr-only">Online</span>
                                   </span>
                                 </div>
                                 <p className="text-sm text-gray-500">
-                                  @whitneyFrancis
+                                  @{loggedUser?.username}
                                 </p>
                               </div>
                               <div className="mt-5 flex  space-x-5">
@@ -115,7 +117,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                               Email
                             </dt>
                             <dd className="mt-1 text-sm text-dark-shade sm:col-span-2">
-                              whitneyFrancis@gmail.com
+                              {loggedUser?.email}
                             </dd>
                           </div>
                           <div>

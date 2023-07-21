@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DesktopProfileModal from "../HomeComponents/DesktopProfileModal";
+import { MyContext } from "../../context/MyContext";
 
 const UserProfileCard = () => {
   const [modal, setModal] = useState(false);
+  const { loggedUser } = useContext(MyContext);
 
   const HandleModalOpen = () => {
     setModal((modal) => !modal);
@@ -19,12 +21,14 @@ const UserProfileCard = () => {
             <img
               className="inline-block h-9 w-9 rounded-full"
               // src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
-              src={JSON.parse(localStorage.getItem("userInfo")).pic.toString()}
+              src={loggedUser?.pic}
               alt=""
             />
           </div>
           <div className="ml-3">
-            <p className="text-sm font-medium text-white ">Whitney Francis</p>
+            <p className="text-sm font-medium text-white ">
+              {loggedUser?.username}
+            </p>
             <p className="text-xs font-medium text-white ">View profile</p>
           </div>
         </div>

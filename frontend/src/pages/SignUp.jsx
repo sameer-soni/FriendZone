@@ -163,7 +163,7 @@ const Signup = () => {
             />
             <div className="sm:col-span-6 mt-5">
               <div className="mt-1 flex items-center">
-                <PlaceholderUserImage />
+                <PlaceholderUserImage img={image ? image : ""} />
                 <ImageSelector>
                   <Label text="Change" />
                   <InputFile
