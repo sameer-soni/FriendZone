@@ -1,27 +1,37 @@
 import { Fragment, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import { FaceFrownIcon, GlobeAmericasIcon } from "@heroicons/react/24/outline";
+import {
+  FaceFrownIcon,
+  GlobeAmericasIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/24/outline";
 import { Combobox, Dialog, Transition } from "@headlessui/react";
 import { classNames } from "../../utils/Helpers";
 import PropTypes from "prop-types";
 import { randomNamesWithPictures } from "../../constants/Constants";
+import { MobileProfileModal, Button } from "../index";
 
 const items = randomNamesWithPictures;
 
 const SearchModal = ({ open, setOpen }) => {
   const [query, setQuery] = useState("");
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState({});
+  const handleProfileModal = () => {
+    setProfileModalOpen((modal) => !modal);
+  };
 
   const filteredItems =
     query === ""
       ? []
       : items.filter((item) => {
-          return item.name.toLowerCase().includes(query.toLowerCase());
+          return item.username.toLowerCase().includes(query.toLowerCase());
         });
 
   const groups = filteredItems.reduce((groups, item) => {
     return {
       ...groups,
-      [item.name]: [...(groups[item.name] || []), item],
+      [item.username]: [...(groups[item.username] || []), item],
     };
   }, {});
 
@@ -56,7 +66,7 @@ const SearchModal = ({ open, setOpen }) => {
             leaveTo="opacity-0 scale-95"
           >
             <Dialog.Panel className="mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
-              <Combobox onChange={(item) => (window.location = item.url)}>
+              <Combobox>
                 <div className="relative">
                   <MagnifyingGlassIcon
                     className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400"
@@ -96,7 +106,6 @@ const SearchModal = ({ open, setOpen }) => {
                           {items.map((item) => (
                             <Combobox.Option
                               key={item.id}
-                              value={item}
                               className={({ active }) =>
                                 classNames(
                                   "cursor-default select-none px-4 py-2",
@@ -104,18 +113,40 @@ const SearchModal = ({ open, setOpen }) => {
                                 )
                               }
                             >
-                              <div className="flex flex-row items-center gap-x-1 font-bold">
-                                <img
-                                  className="h-8 w-8 rounded-md object-cover"
-                                  src={item.picture}
-                                  alt="Contact's Profile"
-                                />
-
-                                {item.name}
+                              <div className="flex flex-row items-center justify-between font-bold">
+                                <div className="flex flex-row items-center gap-x-2">
+                                  <img
+                                    className="h-10 w-10  rounded-md object-cover"
+                                    src={item.pic}
+                                    alt="Contact's Profile"
+                                  />
+                                  {item.username}
+                                </div>
+                                <div className="flex flex-row items-center justify-center">
+                                  <div
+                                    className="cursor-pointer"
+                                    onClick={() => handleProfileModal()}
+                                    onMouseEnter={() => setSelectedUser(item)}
+                                  >
+                                    <InformationCircleIcon
+                                      color="#fff"
+                                      width="20px"
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </Combobox.Option>
                           ))}
                         </ul>
+                        <MobileProfileModal
+                          open={profileModalOpen}
+                          setOpen={setProfileModalOpen}
+                          user={selectedUser}
+                        >
+                          <Button className="bg-primary-shade hover:bg-primary-shade-v2 text-white focus:outline-none">
+                            Message
+                          </Button>
+                        </MobileProfileModal>
                       </li>
                     ))}
                   </Combobox.Options>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { navigation } from "../../constants/Constants";
 import { classNames } from "../../utils/Helpers";
 import ProfileDropDown from "./ProfileDropDown";
+
 const MobileBottomBar = () => {
   return (
     <div className="block md:hidden border border-t-gray-300">
