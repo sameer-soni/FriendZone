@@ -45,7 +45,7 @@ Any contributions you make are **greatly appreciated**.
   1. Fork the Project.
   2. Clone the forked repository to your local machine:
      ```sh
-      https://github.com/sameer-soni/Social-Media-website.git
+     git clone https://github.com/sameer-soni/Social-Media-website.git
      ```
   3. Create your feature branch.
      ```sh
