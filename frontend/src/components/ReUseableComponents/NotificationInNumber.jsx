@@ -9,7 +9,7 @@ const NotificationInNumber = ({ total }) => {
 };
 
 NotificationInNumber.propTypes = {
-  total: PropTypes.number.isRequired,
+  total: PropTypes.number,
 };
 
 export default NotificationInNumber;

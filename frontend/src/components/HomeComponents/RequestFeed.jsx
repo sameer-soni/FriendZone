@@ -31,12 +31,10 @@ const RequestFeed = ({ key, user }) => {
 };
 
 RequestFeed.propTypes = {
-  activity: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    person: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string.isRequired,
-    }).isRequired,
+  key: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    pic: PropTypes.string.isRequired,
+    name: PropTypes.string,
     time: PropTypes.string.isRequired,
   }).isRequired,
 };

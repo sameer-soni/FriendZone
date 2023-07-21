@@ -25,3 +25,6 @@ export { default as RequestFeed } from "./HomeComponents/RequestFeed";
 export { default as Button } from "./ReUseableComponents/Button.jsx";
 export { default as NotificationInNumber } from "./ReUseableComponents/NotificationInNumber";
 export { default as ContactCard } from "./HomeComponents/ContactCard";
+export { default as MobileProfileModal } from "./HomeComponents/MobileProfileModal.jsx";
+export { default as SideProfileModal } from "./HomeComponents/DesktopProfileModal";
+export { default as SearchModal } from "./HomeComponents/SearchModal";
