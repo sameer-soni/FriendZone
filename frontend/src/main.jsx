@@ -4,11 +4,14 @@ import { RouterProvider } from "react-router-dom";
 import "./index.css";
 import router from "./routes/routes";
 import { ChakraProvider } from "@chakra-ui/react";
+import { MyContextProvier } from "./context/MyContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ChakraProvider>
-      <RouterProvider router={router} />
-    </ChakraProvider>
+    <MyContextProvier>
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
+    </MyContextProvier>
   </React.StrictMode>
 );

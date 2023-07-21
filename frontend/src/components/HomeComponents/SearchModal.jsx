@@ -63,7 +63,7 @@ const SearchModal = ({ open, setOpen }) => {
                     aria-hidden="true"
                   />
                   <Combobox.Input
-                    className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-800 placeholder-gray-400 focus:ring-0 sm:text-sm"
+                    className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-400 placeholder-gray-400 focus:ring-0 sm:text-sm outline-double"
                     placeholder="Search..."
                     onChange={(event) => setQuery(event.target.value)}
                   />
@@ -100,7 +100,7 @@ const SearchModal = ({ open, setOpen }) => {
                               className={({ active }) =>
                                 classNames(
                                   "cursor-default select-none px-4 py-2",
-                                  active && "bg-indigo-600 text-white"
+                                  active && "bg-primary-shade text-white"
                                 )
                               }
                             >

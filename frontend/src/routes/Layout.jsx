@@ -1,11 +1,15 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { Sidebar, Topbar, MobileBottomBar } from "../components";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { MyContext } from "../context/MyContext";
 
 const Layout = () => {
   const navigate = useNavigate();
+  const { loggedUser, setLoggedUser } = useContext(MyContext);
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem("userInfo"))) {
+    console.log(loggedUser);
+    if (!loggedUser) {
+      // setLoggedUser("");
       navigate("/signin");
     }
   }, []);

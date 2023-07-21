@@ -28,13 +28,12 @@ const DesktopSecondaryColumn = () => {
       <div className="border border-b-gray-300 px-3 py-4 ">
         <div className="flex flex-row items-center justify-between text-tertiary-shade uppercase  ">
           <p>Recent</p>
-          <NotificationInNumber total={friendReq?.length} />
+          <NotificationInNumber total={friendReq ? friendReq.length : "0"} />
         </div>
-
         {/* rendering friend request portion */}
-        {friendReq?.map((user) => (
-          <RequestFeed key={user.id} user={user} />
-        ))}
+        {!friendReq
+          ? "No Friend Request"
+          : friendReq?.map((user) => <RequestFeed key={user.id} user={user} />)}
       </div>
       <div className="px-3 py-4 overflow-x-hidden">
         <div className="flex flex-row items-center justify-between text-dark-shade uppercase">

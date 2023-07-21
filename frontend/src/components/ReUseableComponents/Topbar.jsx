@@ -12,7 +12,7 @@ const Topbar = () => {
               <LogoWithName />
             </div>
 
-            <div className="w-full lg:w-1/3">
+            <div className="w-full lg:w-1/3 hover:w-10">
               <div className="flex items-center justify-end">
                 <SearchBar />
                 <ButtonLink
