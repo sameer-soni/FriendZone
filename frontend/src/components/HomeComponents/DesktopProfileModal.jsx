@@ -1,10 +1,12 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import Button from "../ReUseableComponents/Button";
+import { MyContext } from "../../context/MyContext";
 
 const DesktopProfileModal = ({ open, setOpen }) => {
+  const { loggedUser } = useContext(MyContext);
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -27,7 +29,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md ">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                  <div className="flex h-full flex-col  bg-white shadow-xl overflow-y-hidden">
                     <div className="px-4 py-6 sm:px-6">
                       <div className="flex items-start justify-between">
                         <h2
@@ -53,34 +55,40 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                       <div className="pb-1 sm:pb-6">
                         <div>
                           <div className="relative h-40 sm:h-56">
+                            <img src="https://images.unsplash.com/photo-1542401886-65d6c61db217?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" />
+                            <div className="flex h-7 items-center absolute right-5 top-2">
+                              <button
+                                type="button"
+                                className="rounded-md bg-white text-primary-shade "
+                                onClick={() => setOpen(false)}
+                              >
+                                <span className="sr-only">Close panel</span>
+                                <XMarkIcon
+                                  className="h-6 w-6"
+                                  aria-hidden="true"
+                                />
+                              </button>
+                            </div>
+                          </div>
+                          <div className="relative mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
                             <img
-                              className="absolute h-full w-full object-cover"
-                              src="https://images.unsplash.com/photo-1501031170107-cfd33f0cbdcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&h=600&q=80"
+                              className="absolute rounded-full -top-1/4 -translate-y-1/4  left-1/2 -translate-x-1/2  w-44 object-cover shadow-xl"
+                              src={loggedUser?.pic}
                               alt=""
                             />
-                          </div>
-                          <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
-                            <div className="sm:flex-1">
+                            <div className="sm:flex-1 mt-24">
                               <div>
                                 <div className="flex items-center">
                                   <h3 className="text-xl font-bold text-dark-shade sm:text-2xl">
-                                    Whitney Francis
+                                    {loggedUser?.username}
                                   </h3>
                                   <span className="ml-2.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400">
                                     <span className="sr-only">Online</span>
                                   </span>
                                 </div>
                                 <p className="text-sm text-gray-500">
-                                  @whitneyFrancis
+                                  @{loggedUser?.username}
                                 </p>
-                              </div>
-                              <div className="mt-5 flex  space-x-5">
-                                <Button className="bg-primary-shade hover:bg-primary-shade-v2 text-white w-2/4">
-                                  Message
-                                </Button>
-                                <Button className="bg-white hover:bg-gray-200 text-quaternary-shade border border-tertiary-shade  w-2/4 ">
-                                  Call
-                                </Button>
                               </div>
                             </div>
                           </div>
@@ -115,7 +123,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                               Email
                             </dt>
                             <dd className="mt-1 text-sm text-dark-shade sm:col-span-2">
-                              whitneyFrancis@gmail.com
+                              {loggedUser?.email}
                             </dd>
                           </div>
                           <div>
@@ -125,6 +133,12 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                             <dd className="mt-1 text-sm text-dark-shade sm:col-span-2">
                               <time dateTime="1988-06-23">June 23, 1988</time>
                             </dd>
+                          </div>
+
+                          <div className="mt-5 flex  space-x-5">
+                            <Button className="bg-primary-shade hover:bg-primary-shade-v2 text-white w-2/4">
+                              Logout
+                            </Button>
                           </div>
                         </dl>
                       </div>

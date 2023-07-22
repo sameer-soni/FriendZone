@@ -3,11 +3,17 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import MobileProfileModal from "../HomeComponents/MobileProfileModal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { MyContext } from "../../context/MyContext";
+
+import Button from "../ReUseableComponents/Button";
 
 const ProfileDropDown = () => {
   const [open, setOpen] = useState(false);
+
   const navigate = useNavigate();
+  const { loggedUser } = useContext(MyContext);
+
   const toast = useToast();
 
   const handleLogout = async () => {
@@ -50,7 +56,8 @@ const ProfileDropDown = () => {
           <span className="sr-only">Open user menu</span>
           <img
             className="h-8 w-8 rounded-full"
-            src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80"
+            // src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80"
+            src={loggedUser?.pic}
             alt=""
           />
         </div>
@@ -59,7 +66,15 @@ const ProfileDropDown = () => {
         open={open}
         setOpen={setOpen}
         handleLogout={handleLogout}
-      />
+        user={loggedUser}
+      >
+        <Button
+          clickHandler={handleLogout}
+          className="bg-primary-shade hover:bg-primary-shade-v2 text-white focus:outline-none"
+        >
+          Log Out
+        </Button>
+      </MobileProfileModal>
     </Menu>
   );
 };

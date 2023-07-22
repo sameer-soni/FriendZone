@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   FormInput,
   PrimaryButton,
@@ -11,10 +11,13 @@ import {
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { MyContext } from "../context/MyContext";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { loggedUser, setLoggedUser } = useContext(MyContext);
 
   const toast = useToast();
 
@@ -36,6 +39,7 @@ const SignIn = () => {
       console.log(data);
 
       localStorage.setItem("userInfo", JSON.stringify(data.user));
+      setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
 
       toast({
         title: `${data.message}`,
