@@ -5,10 +5,12 @@ import { useToast } from "@chakra-ui/react";
 import MobileProfileModal from "../HomeComponents/MobileProfileModal";
 import { useContext, useState } from "react";
 import { MyContext } from "../../context/MyContext";
+
 import Button from "../ReUseableComponents/Button";
 
 const ProfileDropDown = () => {
   const [open, setOpen] = useState(false);
+
   const navigate = useNavigate();
   const { loggedUser } = useContext(MyContext);
 
@@ -64,6 +66,7 @@ const ProfileDropDown = () => {
         open={open}
         setOpen={setOpen}
         handleLogout={handleLogout}
+
         user={loggedUser}
       >
         <Button
@@ -73,6 +76,7 @@ const ProfileDropDown = () => {
           Log Out
         </Button>
       </MobileProfileModal>
+
     </Menu>
   );
 };
