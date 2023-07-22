@@ -51,11 +51,12 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                             </div>
                           </div>
                           <div className="relative mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
-                            <img
-                              className="absolute rounded-full -top-1/4 -translate-y-1/4  left-1/2 -translate-x-1/2  w-44 object-cover shadow-xl"
-                              src={loggedUser?.pic}
-                              alt=""
-                            />
+                            <div className="absolute  w-44 h-44 border-8 border-white drop-shadow-2xl rounded-full overflow-hidden -top-1/4 -translate-y-1/4  left-1/2 -translate-x-1/2 ">
+                              <img
+                                src={loggedUser?.pic}
+                                className="w-full h-full object-cover object-left"
+                              />
+                            </div>
                             <div className="sm:flex-1 mt-24">
                               <div>
                                 <div className="flex items-center">

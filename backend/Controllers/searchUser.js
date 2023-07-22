@@ -1,7 +1,7 @@
 const User = require("../Models/userSchema");
 
 const searchUser = async (req, res) => {
-  const { searchInput } = req.body;
+  const { searchInput } = req.query;
 
   if (!searchInput) {
     return res.status(400).json({ error: "No search Value" });

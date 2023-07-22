@@ -3,6 +3,6 @@ const { searchUser } = require("../Controllers/searchUser");
 const { authVerify } = require("../Controllers/authController");
 const router = express.Router();
 
-router.post("/searchUser", authVerify, searchUser);
+router.get("/searchUser", authVerify, searchUser);
 
 module.exports.userRouter = router;

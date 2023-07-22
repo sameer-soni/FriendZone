@@ -1,17 +1,19 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import {
   FaceFrownIcon,
   GlobeAmericasIcon,
   InformationCircleIcon,
+  UserPlusIcon,
 } from "@heroicons/react/24/outline";
 import { Combobox, Dialog, Transition } from "@headlessui/react";
 import { classNames } from "../../utils/Helpers";
 import PropTypes from "prop-types";
 import { randomNamesWithPictures } from "../../constants/Constants";
 import { MobileProfileModal, Button } from "../index";
-
-const items = randomNamesWithPictures;
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useToast } from "@chakra-ui/react";
 
 const SearchModal = ({ open, setOpen }) => {
   const [query, setQuery] = useState("");
@@ -21,19 +23,72 @@ const SearchModal = ({ open, setOpen }) => {
     setProfileModalOpen((modal) => !modal);
   };
 
-  const filteredItems =
-    query === ""
-      ? []
-      : items.filter((item) => {
-          return item.username.toLowerCase().includes(query.toLowerCase());
-        });
+  //my code starts from here:
+  const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
+  const toast = useToast();
 
-  const groups = filteredItems.reduce((groups, item) => {
-    return {
-      ...groups,
-      [item.username]: [...(groups[item.username] || []), item],
-    };
-  }, {});
+  const handleSearch = async (e) => {
+    // console.log(e.target.value);
+    setQuery(e.target.value);
+    try {
+      const { data } = await axios.get(
+        `http://localhost:8000/user/searchUser?searchInput=${e.target.value}`,
+        { withCredentials: true }
+      );
+
+      console.log(data);
+      setUsers(data.users);
+    } catch (error) {
+      // console.log(error);
+
+      if (error.response.data.error === "no token") {
+        alert("please login again");
+        localStorage.removeItem("userInfo");
+        navigate("/signin");
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (query === "") {
+      setUsers([]);
+    }
+  }, [query]);
+
+  // ADD friend-----------------------------------------------------------
+  const addFriend = async (u) => {
+    console.log("addfirendclicked", u);
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/friend/sendFriendRequest",
+        {
+          recieverId: u._id,
+        },
+        { withCredentials: true }
+      );
+
+      console.log(response);
+
+      toast({
+        title: `${response.data.message}`,
+        status: "success",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+    } catch (error) {
+      console.log(error);
+
+      toast({
+        title: `${error.response.data.error}`,
+        status: "warning",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+    }
+  };
 
   return (
     <Transition.Root
@@ -75,7 +130,8 @@ const SearchModal = ({ open, setOpen }) => {
                   <Combobox.Input
                     className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-400 placeholder-gray-400 focus:ring-0 sm:text-sm outline-double"
                     placeholder="Search..."
-                    onChange={(event) => setQuery(event.target.value)}
+                    // onChange={(event) => setQuery(event.target.value)}
+                    onChange={handleSearch}
                   />
                 </div>
 
@@ -95,56 +151,60 @@ const SearchModal = ({ open, setOpen }) => {
                   </div>
                 )}
 
-                {filteredItems.length > 0 && (
+                {users.length > 0 && (
                   <Combobox.Options
                     static
                     className="max-h-80 scroll-pt-11 scroll-pb-2 space-y-2 overflow-y-auto pb-2"
                   >
-                    {Object.entries(groups).map(([category, items]) => (
-                      <li key={category}>
+                    {users.map((user) => (
+                      <li key={user._id}>
                         <ul className="mt-2 text-sm text-gray-800">
-                          {items.map((item) => (
-                            <Combobox.Option
-                              key={item.id}
-                              className={({ active }) =>
-                                classNames(
-                                  "cursor-default select-none px-4 py-2",
-                                  active && "bg-primary-shade text-white"
-                                )
-                              }
-                            >
-                              <div className="flex flex-row items-center justify-between font-bold">
-                                <div className="flex flex-row items-center gap-x-2">
-                                  <img
-                                    className="h-10 w-10  rounded-md object-cover"
-                                    src={item.pic}
-                                    alt="Contact's Profile"
+                          <Combobox.Option
+                            key={user._id}
+                            className={({ active }) =>
+                              classNames(
+                                "cursor-default select-none px-4 py-2",
+                                active && "bg-primary-shade text-white"
+                              )
+                            }
+                          >
+                            <div className="flex flex-row items-center justify-between font-bold">
+                              <div className="flex flex-row items-center gap-x-2">
+                                <img
+                                  className="h-10 w-10  rounded-md object-cover"
+                                  src={user.pic}
+                                  alt="Contact's Profile"
+                                />
+                                {user.username}
+                              </div>
+                              <div className="flex flex-row items-center justify-center">
+                                <div
+                                  className="cursor-pointer"
+                                  onClick={() => handleProfileModal()}
+                                  onMouseEnter={() => setSelectedUser(user)}
+                                >
+                                  <InformationCircleIcon
+                                    color="#fff"
+                                    width="20px"
                                   />
-                                  {item.username}
-                                </div>
-                                <div className="flex flex-row items-center justify-center">
-                                  <div
-                                    className="cursor-pointer"
-                                    onClick={() => handleProfileModal()}
-                                    onMouseEnter={() => setSelectedUser(item)}
-                                  >
-                                    <InformationCircleIcon
-                                      color="#fff"
-                                      width="20px"
-                                    />
-                                  </div>
                                 </div>
                               </div>
-                            </Combobox.Option>
-                          ))}
+                            </div>
+                          </Combobox.Option>
                         </ul>
                         <MobileProfileModal
                           open={profileModalOpen}
                           setOpen={setProfileModalOpen}
                           user={selectedUser}
                         >
-                          <Button className="bg-primary-shade hover:bg-primary-shade-v2 text-white focus:outline-none">
+                          <Button className="bg-orange-800 hover:bg-orange-950 text-white focus:outline-none">
                             Message
+                          </Button>
+                          <Button
+                            className="bg-orange-800 hover:bg-orange-950 text-white focus:outline-none"
+                            clickHandler={() => addFriend(user)}
+                          >
+                            <UserPlusIcon className="mx-auto h-6 w-6" />
                           </Button>
                         </MobileProfileModal>
                       </li>
@@ -152,7 +212,7 @@ const SearchModal = ({ open, setOpen }) => {
                   </Combobox.Options>
                 )}
 
-                {query !== "" && filteredItems.length === 0 && (
+                {query !== "" && users.length === 0 && (
                   <div className="border-t border-gray-100 py-14 px-6 text-center text-sm sm:px-14">
                     <FaceFrownIcon
                       className="mx-auto h-6 w-6 text-gray-400"
