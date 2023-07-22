@@ -6,8 +6,6 @@ import MobileProfileModal from "../HomeComponents/MobileProfileModal";
 import { useContext, useState } from "react";
 import { MyContext } from "../../context/MyContext";
 
-import Button from "../ReUseableComponents/Button";
-
 const ProfileDropDown = () => {
   const [open, setOpen] = useState(false);
 
@@ -66,15 +64,7 @@ const ProfileDropDown = () => {
         open={open}
         setOpen={setOpen}
         handleLogout={handleLogout}
-        user={loggedUser}
-      >
-        <Button
-          clickHandler={handleLogout}
-          className="bg-primary-shade hover:bg-primary-shade-v2 text-white focus:outline-none"
-        >
-          Log Out
-        </Button>
-      </MobileProfileModal>
+      />
     </Menu>
   );
 };

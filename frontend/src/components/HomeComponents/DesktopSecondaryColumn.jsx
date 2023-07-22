@@ -44,8 +44,8 @@ const DesktopSecondaryColumn = () => {
           {randomNamesWithPictures.map((item) => (
             <ContactCard
               key={item.id}
-              name={item.username}
-              picture={item.pic}
+              name={item.name}
+              picture={item.picture}
             />
           ))}
         </div>
