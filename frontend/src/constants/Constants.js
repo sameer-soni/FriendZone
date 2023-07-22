@@ -8,9 +8,9 @@ import {
 } from "@heroicons/react/24/outline";
 
 export const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
+  { name: "Home", href: "/", icon: HomeIcon, current: true },
   { name: "Photos", href: "#", icon: PhotoIcon, current: false },
-  { name: "Explore", href: "#", icon: UserGroupIcon, current: false },
+  { name: "Friends", href: "/friends", icon: UserGroupIcon, current: false },
   {
     name: "Profile",
     href: "#",

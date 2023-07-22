@@ -1,5 +1,10 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { Sidebar, Topbar, MobileBottomBar } from "../components";
+import {
+  Sidebar,
+  Topbar,
+  MobileBottomBar,
+  DesktopSecondaryColumn,
+} from "../components";
 import { useContext, useEffect } from "react";
 import { MyContext } from "../context/MyContext";
 
@@ -15,14 +20,19 @@ const Layout = () => {
   }, []);
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar className="flex-shrink-0" />
-      <div className="flex flex-col flex-1">
-        <Topbar />
-        <Outlet />
-        <MobileBottomBar />
+    <>
+      <div className="flex h-full">
+        <Sidebar />
+        <div className="flex flex-1 flex-col overflow-hidden">
+          <Topbar />
+          <div className="flex flex-1 items-stretch overflow-hidden">
+            <Outlet />
+            <DesktopSecondaryColumn />
+          </div>
+          <MobileBottomBar />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

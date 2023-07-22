@@ -70,14 +70,10 @@ const RequestFeed = ({ key, user }) => {
           </div>
         </div>
         <div className="flex flex-row gap-10 mt-5">
-<<<<<<< HEAD
-          <Button className="bg-primary-shade text-white flex-1 hover:bg-primary-shade-v2">
-=======
           <Button
             className="bg-primary-shade text-white flex-1 hover:bg-primary-shade-v2"
             clickHandler={() => acceptRequest(user)}
           >
->>>>>>> eeec82e8481cf155fe2823452430c954cdf002dd
             Accept
           </Button>
           <Button

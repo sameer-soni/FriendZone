@@ -4,24 +4,16 @@ import {
   FaceFrownIcon,
   GlobeAmericasIcon,
   InformationCircleIcon,
-<<<<<<< HEAD
-=======
   UserPlusIcon,
->>>>>>> eeec82e8481cf155fe2823452430c954cdf002dd
 } from "@heroicons/react/24/outline";
 import { Combobox, Dialog, Transition } from "@headlessui/react";
 import { classNames } from "../../utils/Helpers";
 import PropTypes from "prop-types";
 import { randomNamesWithPictures } from "../../constants/Constants";
 import { MobileProfileModal, Button } from "../index";
-<<<<<<< HEAD
-
-const items = randomNamesWithPictures;
-=======
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
->>>>>>> eeec82e8481cf155fe2823452430c954cdf002dd
 
 const SearchModal = ({ open, setOpen }) => {
   const [query, setQuery] = useState("");
@@ -31,21 +23,6 @@ const SearchModal = ({ open, setOpen }) => {
     setProfileModalOpen((modal) => !modal);
   };
 
-<<<<<<< HEAD
-  const filteredItems =
-    query === ""
-      ? []
-      : items.filter((item) => {
-          return item.username.toLowerCase().includes(query.toLowerCase());
-        });
-
-  const groups = filteredItems.reduce((groups, item) => {
-    return {
-      ...groups,
-      [item.username]: [...(groups[item.username] || []), item],
-    };
-  }, {});
-=======
   //my code starts from here:
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
@@ -112,7 +89,6 @@ const SearchModal = ({ open, setOpen }) => {
       });
     }
   };
->>>>>>> eeec82e8481cf155fe2823452430c954cdf002dd
 
   return (
     <Transition.Root
@@ -183,39 +159,6 @@ const SearchModal = ({ open, setOpen }) => {
                     {users.map((user) => (
                       <li key={user._id}>
                         <ul className="mt-2 text-sm text-gray-800">
-<<<<<<< HEAD
-                          {items.map((item) => (
-                            <Combobox.Option
-                              key={item.id}
-                              className={({ active }) =>
-                                classNames(
-                                  "cursor-default select-none px-4 py-2",
-                                  active && "bg-primary-shade text-white"
-                                )
-                              }
-                            >
-                              <div className="flex flex-row items-center justify-between font-bold">
-                                <div className="flex flex-row items-center gap-x-2">
-                                  <img
-                                    className="h-10 w-10  rounded-md object-cover"
-                                    src={item.pic}
-                                    alt="Contact's Profile"
-                                  />
-                                  {item.username}
-                                </div>
-                                <div className="flex flex-row items-center justify-center">
-                                  <div
-                                    className="cursor-pointer"
-                                    onClick={() => handleProfileModal()}
-                                    onMouseEnter={() => setSelectedUser(item)}
-                                  >
-                                    <InformationCircleIcon
-                                      color="#fff"
-                                      width="20px"
-                                    />
-                                  </div>
-                                </div>
-=======
                           <Combobox.Option
                             key={user._id}
                             className={({ active }) =>
@@ -233,7 +176,6 @@ const SearchModal = ({ open, setOpen }) => {
                                   alt="Contact's Profile"
                                 />
                                 {user.username}
->>>>>>> eeec82e8481cf155fe2823452430c954cdf002dd
                               </div>
                               <div className="flex flex-row items-center justify-center">
                                 <div
@@ -255,11 +197,6 @@ const SearchModal = ({ open, setOpen }) => {
                           setOpen={setProfileModalOpen}
                           user={selectedUser}
                         >
-<<<<<<< HEAD
-                          <Button className="bg-primary-shade hover:bg-primary-shade-v2 text-white focus:outline-none">
-                            Message
-                          </Button>
-=======
                           <Button className="bg-orange-800 hover:bg-orange-950 text-white focus:outline-none">
                             Message
                           </Button>
@@ -269,7 +206,6 @@ const SearchModal = ({ open, setOpen }) => {
                           >
                             <UserPlusIcon className="mx-auto h-6 w-6" />
                           </Button>
->>>>>>> eeec82e8481cf155fe2823452430c954cdf002dd
                         </MobileProfileModal>
                       </li>
                     ))}

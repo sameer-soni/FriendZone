@@ -1,10 +1,11 @@
 import { classNames } from "../../utils/Helpers";
 import { navigation } from "../../constants/Constants";
 import UserProfileCard from "./UserProfileCard";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="hidden lg:flex lg:flex-shrink-0 border-gray-300 border-r py-1">
+    <div className="hidden w-64 overflow-y-auto bg-light-shade md:block border-r border-borders-color overflow-x-hidden">
       <div className="flex w-64 flex-col">
         <div className="flex min-h-0 flex-1 flex-col  bg-gray-100 mx-2 ">
           <UserProfileCard />
@@ -12,9 +13,9 @@ const Sidebar = () => {
             <nav className="mt-5 flex-1" aria-label="Sidebar">
               <div className="space-y-1 px-2 bg-white rounded-none md:rounded-xl py-2 ">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     className={classNames(
                       "text-gray-600 hover:bg-gray-50 border-l-2 border-white hover:border-l-2 hover:border-primary-shade hover:text-primary-shade group flex items-center px-2 py-2 text-sm font-medium transition duration-500 ease-in-out"
                     )}
@@ -29,7 +30,7 @@ const Sidebar = () => {
                       aria-hidden="true"
                     />
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </nav>

@@ -10,6 +10,8 @@ export default {
         "tertiary-shade": "rgb(156 163 175)",
         "quaternary-shade": "rgb(107 114 128)",
         "dark-shade": "#111827",
+        "light-shade": "#fff",
+        "borders-color": "#d1d5db",
       },
       backgroundImage: {
         "my-image": "url('./src/assets/Login-Sign-BackgroundImage.avif')",
