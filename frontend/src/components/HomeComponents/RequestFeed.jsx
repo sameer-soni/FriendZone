@@ -19,7 +19,7 @@ const RequestFeed = ({ key, user }) => {
         </div>
         <div className="flex flex-row gap-10 mt-5">
           <Button className="bg-primary-shade text-white flex-1 hover:bg-primary-shade-v2">
-            Decline
+            Accept
           </Button>
           <Button className="bg-gray-200 text-secondary-shade flex-1 hover:bg-gray-300">
             Decline
