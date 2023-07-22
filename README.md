@@ -1,4 +1,4 @@
-# Social-Media-website (Work in Progress)
+# FriendZone (Work in Progress)
 
 ## Description
 A social media website built using the MERN stack, where users can connect with others, share posts, and interact with content.

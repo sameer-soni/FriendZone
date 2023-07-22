@@ -28,6 +28,7 @@ const SearchBar = () => {
             className="block w-full rounded-md border border-transparent bg-tertiary-shade bg-opacity-25 py-2 pl-10 pr-3 leading-5 text-indigo-100 placeholder-quaternary-shade  focus:text-quaternary-shade focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm caret-transparent"
             placeholder="Search People"
             type="search"
+            autocomplete="off"
           />
         </div>
       </div>

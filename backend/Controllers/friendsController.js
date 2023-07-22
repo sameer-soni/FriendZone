@@ -37,13 +37,32 @@ const send_request = async (req, res) => {
     });
     await reciever.save();
 
-    return res.json({ message: "Friend request sent successfully", reciever });
+    return res.json({ message: "Friend request sent successfully" });
   } catch (error) {
     return res.status(400).json({ error });
   }
 };
 
-const respond_to_request = async (req, res) => {};
+const respond_to_request = async (req, res) => {
+  const { status, requested_user_Id } = req.body;
+  const loggedUser = req.user;
+
+  const requestedUser = await loggedUser.friends.find((e) =>
+    e.user.equals(requested_user_Id)
+  );
+
+  if (status == "accept") {
+    requestedUser.status = "accepted";
+  } else if (status === "decline") {
+    requestedUser.status = "rejected";
+
+    loggedUser.friends = loggedUser.friends.filter(
+      (e) => !e.user.equals(requested_user_Id)
+    );
+  }
+  await loggedUser.save();
+  return res.status(200).json({ requestedUser });
+};
 
 const fetch_requests = async (req, res) => {
   const loggedUser = req.user;
