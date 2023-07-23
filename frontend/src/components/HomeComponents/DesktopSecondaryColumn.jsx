@@ -43,7 +43,7 @@ const DesktopSecondaryColumn = () => {
               {!friendReq
                 ? "No Friend Request"
                 : friendReq?.map((user) => (
-                    <RequestFeed key={user.id} user={user} />
+                    <RequestFeed key={user._id} user={user} />
                   ))}
             </div>
             {/* Contacts */}

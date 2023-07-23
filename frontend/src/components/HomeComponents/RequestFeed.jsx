@@ -6,7 +6,6 @@ import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const RequestFeed = ({ user }) => {
   const toast = useToast();
-
   // Function to accept a friend request
   const acceptRequest = async (u) => {
     console.log(u);
@@ -107,8 +106,8 @@ const RequestFeed = ({ user }) => {
 RequestFeed.propTypes = {
   user: PropTypes.shape({
     pic: PropTypes.string.isRequired,
-    name: PropTypes.string,
-    time: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    time: PropTypes.string,
   }).isRequired,
 };
 

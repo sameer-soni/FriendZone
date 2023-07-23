@@ -56,7 +56,7 @@ const ContactCard = ({ picture, name, status }) => {
 ContactCard.propTypes = {
   picture: PropTypes.string.isRequired, // User profile picture URL
   name: PropTypes.string.isRequired, // User display name
-  status: PropTypes.bool.isRequired, // User status (true or false)
+  status: PropTypes.string.isRequired, // User status (true or false)
 };
 
 export default ContactCard;
