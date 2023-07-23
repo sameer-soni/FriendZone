@@ -9,27 +9,29 @@ import {
 import { Combobox, Dialog, Transition } from "@headlessui/react";
 import { classNames } from "../../utils/Helpers";
 import PropTypes from "prop-types";
-import { randomNamesWithPictures } from "../../constants/Constants";
 import { MobileProfileModal, Button } from "../index";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
+import { InboxIcon } from "@heroicons/react/24/outline";
 
 const SearchModal = ({ open, setOpen }) => {
   const [query, setQuery] = useState("");
   const [profileModalOpen, setProfileModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState({});
+
+  // Function to toggle profile modal
   const handleProfileModal = () => {
     setProfileModalOpen((modal) => !modal);
   };
 
-  //my code starts from here:
+  // React Router's navigation function
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const toast = useToast();
 
+  // Function to handle search and fetch users
   const handleSearch = async (e) => {
-    // console.log(e.target.value);
     setQuery(e.target.value);
     try {
       const { data } = await axios.get(
@@ -37,12 +39,10 @@ const SearchModal = ({ open, setOpen }) => {
         { withCredentials: true }
       );
 
-      console.log(data);
       setUsers(data.users);
     } catch (error) {
-      // console.log(error);
-
       if (error.response.data.error === "no token") {
+        // Redirect to sign-in page if token is missing
         alert("please login again");
         localStorage.removeItem("userInfo");
         navigate("/signin");
@@ -56,9 +56,8 @@ const SearchModal = ({ open, setOpen }) => {
     }
   }, [query]);
 
-  // ADD friend-----------------------------------------------------------
+  // Function to add friend
   const addFriend = async (u) => {
-    console.log("addfirendclicked", u);
     try {
       const response = await axios.post(
         "http://localhost:8000/friend/sendFriendRequest",
@@ -68,8 +67,6 @@ const SearchModal = ({ open, setOpen }) => {
         { withCredentials: true }
       );
 
-      console.log(response);
-
       toast({
         title: `${response.data.message}`,
         status: "success",
@@ -78,8 +75,6 @@ const SearchModal = ({ open, setOpen }) => {
         isClosable: true,
       });
     } catch (error) {
-      console.log(error);
-
       toast({
         title: `${error.response.data.error}`,
         status: "warning",
@@ -98,6 +93,7 @@ const SearchModal = ({ open, setOpen }) => {
       appear
     >
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
+        {/* Background overlay */}
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -107,9 +103,10 @@ const SearchModal = ({ open, setOpen }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-25 transition-opacity" />
+          <div className="fixed inset-0 backdrop-blur-sm bg-opacity-25 transition-opacity" />
         </Transition.Child>
 
+        {/* Search modal content */}
         <div className="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 md:p-20">
           <Transition.Child
             as={Fragment}
@@ -123,14 +120,15 @@ const SearchModal = ({ open, setOpen }) => {
             <Dialog.Panel className="mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
               <Combobox>
                 <div className="relative">
+                  {/* Magnifying glass icon */}
                   <MagnifyingGlassIcon
                     className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400"
                     aria-hidden="true"
                   />
+                  {/* Search input */}
                   <Combobox.Input
                     className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-400 placeholder-gray-400 focus:ring-0 sm:text-sm outline-double"
                     placeholder="Search..."
-                    // onChange={(event) => setQuery(event.target.value)}
                     onChange={handleSearch}
                   />
                 </div>
@@ -170,14 +168,16 @@ const SearchModal = ({ open, setOpen }) => {
                           >
                             <div className="flex flex-row items-center justify-between font-bold">
                               <div className="flex flex-row items-center gap-x-2">
+                                {/* User profile picture */}
                                 <img
-                                  className="h-10 w-10  rounded-md object-cover"
+                                  className="h-10 w-10 rounded-md object-cover"
                                   src={user.pic}
                                   alt="Contact's Profile"
                                 />
                                 {user.username}
                               </div>
                               <div className="flex flex-row items-center justify-center">
+                                {/* Information icon */}
                                 <div
                                   className="cursor-pointer"
                                   onClick={() => handleProfileModal()}
@@ -192,16 +192,21 @@ const SearchModal = ({ open, setOpen }) => {
                             </div>
                           </Combobox.Option>
                         </ul>
+                        {/* Mobile profile modal */}
                         <MobileProfileModal
                           open={profileModalOpen}
                           setOpen={setProfileModalOpen}
                           user={selectedUser}
                         >
-                          <Button className="bg-orange-800 hover:bg-orange-950 text-white focus:outline-none">
-                            Message
+                          {/* Buttons inside mobile profile modal */}
+                          <Button
+                            type="button"
+                            className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-text-color shadow-sm focus:outline-none focus:ring-2 border-white p-2"
+                          >
+                            <InboxIcon className="h-6 w-6" aria-hidden="true" />
                           </Button>
                           <Button
-                            className="bg-orange-800 hover:bg-orange-950 text-white focus:outline-none"
+                            className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-text-color shadow-sm focus:outline-none focus:ring-2 border-white p-2"
                             clickHandler={() => addFriend(user)}
                           >
                             <UserPlusIcon className="mx-auto h-6 w-6" />
@@ -237,8 +242,8 @@ const SearchModal = ({ open, setOpen }) => {
 };
 
 SearchModal.propTypes = {
-  open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired, // Whether the modal is open or not
+  setOpen: PropTypes.func.isRequired, // Function to set the open state of the modal
 };
 
 export default SearchModal;

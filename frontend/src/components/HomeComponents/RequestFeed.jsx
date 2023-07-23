@@ -2,10 +2,12 @@ import PropTypes from "prop-types";
 import { Button } from "../index";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const RequestFeed = ({ key, user }) => {
+const RequestFeed = ({ user }) => {
   const toast = useToast();
 
+  // Function to accept a friend request
   const acceptRequest = async (u) => {
     console.log(u);
     try {
@@ -18,6 +20,7 @@ const RequestFeed = ({ key, user }) => {
         { withCredentials: true }
       );
 
+      // Show success toast when request is accepted
       toast({
         title: `Friend Request accepted`,
         status: "success",
@@ -30,6 +33,7 @@ const RequestFeed = ({ key, user }) => {
     }
   };
 
+  // Function to reject a friend request
   const rejectRequest = async (u) => {
     console.log(u);
     try {
@@ -42,6 +46,7 @@ const RequestFeed = ({ key, user }) => {
         { withCredentials: true }
       );
 
+      // Show error toast when request is rejected
       toast({
         title: `Friend Request rejected`,
         status: "error",
@@ -55,32 +60,42 @@ const RequestFeed = ({ key, user }) => {
   };
 
   return (
-    <div>
-      <div key={key} className="py-4">
-        <div className="flex space-x-3 items-center">
-          <img className="h-12 w-12 rounded-md" src={user.pic} alt="" />
-          <div className="flex-1 space-y-1">
-            <div className="flex items-center justify-between">
-              <h3 className="text-sm font-medium">{user.name}</h3>
-              <p className="text-sm text-gray-500">{user.time}</p>
+    <div className="flex flex-col w-full flex-shrink-0 py-4 px-1 cursor-pointer text-text-color">
+      <div className="relative group">
+        {/* User profile picture and display name */}
+        <div className="flex items-center group-hover:translate-x-20 group-hover:blur-sm duration-200">
+          <div>
+            <img
+              className="inline-block h-9 w-9 rounded-full object-cover"
+              src={user.pic}
+              alt=""
+            />
+          </div>
+          <div className="ml-3">
+            <div className="flex flex-row justify-between w-full">
+              <p className="text-sm font-bold uppercase">{user.name}</p>
             </div>
-            <p className="text-sm text-gray-500">
-              Wants to add into your friends list
-            </p>
+            <span className="flex flex-row items-center justify-start space-x-1">
+              <p className="text-sm">Sent a Friend Request</p>
+            </span>
           </div>
         </div>
-        <div className="flex flex-row gap-10 mt-5">
+
+        {/* Accept and reject buttons */}
+        <div className="absolute -left-48 top-1/2 -translate-y-1/2 group-hover:-left-0 duration-200 flex flex-row items-center justify-center gap-2">
           <Button
-            className="bg-primary-shade text-white flex-1 hover:bg-primary-shade-v2"
             clickHandler={() => acceptRequest(user)}
+            type="button"
+            className="inline-flex items-center rounded-full border border-transparent bg-transparent text-text-color shadow-sm hover:bg-primary-shade focus:outline-none focus:ring-2 border-white p-1"
           >
-            Accept
+            <CheckIcon className="h-4 w-4" aria-hidden="true" />
           </Button>
           <Button
-            className="bg-gray-200 text-secondary-shade flex-1 hover:bg-gray-300"
             clickHandler={() => rejectRequest(user)}
+            type="button"
+            className="inline-flex items-center rounded-full border border-transparent bg-transparent text-text-color shadow-sm hover:bg-primary-shade focus:outline-none focus:ring-2 border-white p-1"
           >
-            Decline
+            <XMarkIcon className="h-4 w-4" aria-hidden="true" />
           </Button>
         </div>
       </div>
@@ -88,8 +103,8 @@ const RequestFeed = ({ key, user }) => {
   );
 };
 
+// PropTypes for RequestFeed component
 RequestFeed.propTypes = {
-  key: PropTypes.string.isRequired,
   user: PropTypes.shape({
     pic: PropTypes.string.isRequired,
     name: PropTypes.string,

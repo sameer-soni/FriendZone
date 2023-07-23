@@ -4,14 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary-shade": "#9333ea",
+        "primary-shade": "#00BFFF ",
         "primary-shade-v2": "#a855f7",
         "seconday-shade": "rgb(31 41 55)",
         "tertiary-shade": "rgb(156 163 175)",
         "quaternary-shade": "rgb(107 114 128)",
         "dark-shade": "#111827",
         "light-shade": "#fff",
-        "borders-color": "#d1d5db",
+        "main-shade": "#1E152A",
+        "text-color": "#E7E7E7",
+        "borders-color": "#9ca3af",
       },
       backgroundImage: {
         "my-image": "url('./src/assets/Login-Sign-BackgroundImage.avif')",

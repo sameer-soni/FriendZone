@@ -4,17 +4,24 @@ import { ButtonLink, LogoWithName, SearchBar } from "../index";
 
 const Topbar = () => {
   return (
-    <Disclosure as="nav" className="flex-shrink-0 bg-white sticky top-0 z-10">
+    // Disclosure component as the top-level container for navigation elements
+    <Disclosure
+      as="nav"
+      className="flex-shrink-0 sticky top-0 z-10 bg-main-shade"
+    >
       <>
-        <div className="mx-auto  px-2 sm:px-4 border-b border-borders-color ">
+        <div className="mx-auto px-2 sm:px-4 py-1">
           <div className="relative flex h-16 items-center justify-between">
-            <div className=" items-center px-2 hidden md:block ">
+            {/* Logo section (hidden on small screens) */}
+            <div className="items-center px-2 hidden md:block">
               <LogoWithName />
             </div>
-
-            <div className="w-full lg:w-1/3 ">
+            {/* SearchBar and ButtonLink section */}
+            <div className="w-full lg:w-1/3">
               <div className="flex items-center justify-end">
+                {/* SearchBar component */}
                 <SearchBar />
+                {/* ButtonLink component with a PlusIcon */}
                 <ButtonLink
                   text=""
                   to="#"

@@ -4,7 +4,7 @@ const LogoWithName = () => {
   return (
     <div className="flex-shrink-0 flex flex-row items-center justify-center">
       <Logo />
-      <span className="font-bold">Socialify</span>
+      <span className="font-bold text-text-color">Socialify</span>
     </div>
   );
 };
