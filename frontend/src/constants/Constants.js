@@ -8,9 +8,9 @@ import {
 } from "@heroicons/react/24/outline";
 
 export const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
+  { name: "Home", href: "/", icon: HomeIcon, current: true },
   { name: "Photos", href: "#", icon: PhotoIcon, current: false },
-  { name: "Explore", href: "#", icon: UserGroupIcon, current: false },
+  { name: "Friends", href: "/friends", icon: UserGroupIcon, current: false },
   {
     name: "Profile",
     href: "#",
@@ -31,51 +31,67 @@ export const randomNamesWithPictures = [
     id: 1,
     pic: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8d29tZW58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
     username: "Olivia Adams",
+    status: getRandomStatus(),
   },
   {
     id: 2,
     pic: "https://images.unsplash.com/photo-1485875437342-9b39470b3d95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHdvbWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
     username: "Emily Johnson",
+    status: getRandomStatus(),
   },
   {
     id: 3,
     pic: "https://images.unsplash.com/photo-1481214110143-ed630356e1bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8d29tZW58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
     username: "Ava Williams",
+    status: getRandomStatus(),
   },
   // Add more contacts here...
   {
     id: 4,
     pic: "https://images.unsplash.com/photo-1590649880765-91b1956b8276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdvbWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
     username: "Sophia Smith",
+    status: getRandomStatus(),
   },
   {
     id: 5,
     pic: "https://images.unsplash.com/photo-1591035897819-f4bdf739f446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHdvbWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
     username: "Mia Brown",
+    status: getRandomStatus(),
   },
   {
     id: 6,
     pic: "https://images.unsplash.com/photo-1588516903720-8ceb67f9ef84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHdvbWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
     username: "Isabella Davis",
+    status: getRandomStatus(),
   },
   {
     id: 7,
     pic: "https://images.unsplash.com/photo-1560087637-bf797bc7796a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHdvbWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
     username: "Amelia Taylor",
+    status: getRandomStatus(),
   },
   {
     id: 8,
     pic: "https://images.unsplash.com/photo-1602442787305-decbd65be507?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHdvbWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
     username: "Charlotte Clark",
+    status: getRandomStatus(),
   },
   {
     id: 9,
     pic: "https://plus.unsplash.com/premium_photo-1687294573608-b1cd92277cbc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
     username: "Ryan Smith",
+    status: getRandomStatus(),
   },
   {
     id: 10,
     pic: "https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1lbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
     username: "John Johnson",
+    status: getRandomStatus(),
   },
 ];
+
+// Function to randomly return "online" or "offline" status
+function getRandomStatus() {
+  const statuses = ["online", "offline"];
+  return statuses[Math.floor(Math.random() * statuses.length)];
+}

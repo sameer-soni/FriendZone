@@ -12,7 +12,7 @@ const MobileBottomBar = () => {
             {navigation.map((item) => (
               <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className={classNames(
                   "text-gray-600 hover:bg-gray-50 border-b-2 border-white hover:border-b-2 hover:border-primary-shade hover:text-primary-shade group flex justify-center  items-center px-2 py-2 text-sm font-medium transition duration-500 ease-in-out"
                 )}

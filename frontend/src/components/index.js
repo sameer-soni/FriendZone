@@ -28,3 +28,5 @@ export { default as ContactCard } from "./HomeComponents/ContactCard";
 export { default as MobileProfileModal } from "./HomeComponents/MobileProfileModal.jsx";
 export { default as SideProfileModal } from "./HomeComponents/DesktopProfileModal";
 export { default as SearchModal } from "./HomeComponents/SearchModal";
+export { default as ActivityIcon } from "./ReUseableComponents/ActivityIcon";
+export { default as FriendCard } from "./FriendComponents/FriendCard";
