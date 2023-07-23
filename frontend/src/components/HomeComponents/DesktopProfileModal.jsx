@@ -17,8 +17,8 @@ const DesktopProfileModal = ({ open, setOpen }) => {
 
         {/* Profile Modal */}
         <div
-          className={`fixed inset-0 overflow-hidden backdrop-blur-sm  bg-opacity-0 ${
-            open ? "bg-opacity-60" : ""
+          className={`fixed inset-0 overflow-hidden  bg-main-shade duration-200  bg-opacity-0 ${
+            open ? "bg-opacity-50" : ""
           } duration-500`}
         >
           <div className="absolute inset-0 overflow-hidden">

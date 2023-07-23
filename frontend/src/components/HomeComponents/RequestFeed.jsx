@@ -63,7 +63,7 @@ const RequestFeed = ({ user }) => {
     <div className="flex flex-col w-full flex-shrink-0 py-4 px-1 cursor-pointer text-text-color">
       <div className="relative group">
         {/* User profile picture and display name */}
-        <div className="flex items-center group-hover:translate-x-20 group-hover:blur-sm duration-200">
+        <div className="flex items-center group-hover:translate-x-20 group-hover:blur-sm duration-500">
           <div>
             <img
               className="inline-block h-9 w-9 rounded-full object-cover"
@@ -82,7 +82,7 @@ const RequestFeed = ({ user }) => {
         </div>
 
         {/* Accept and reject buttons */}
-        <div className="absolute -left-48 top-1/2 -translate-y-1/2 group-hover:-left-0 duration-200 flex flex-row items-center justify-center gap-2">
+        <div className="absolute -left-48 top-1/2 -translate-y-1/2 group-hover:left-3 duration-500 flex flex-row items-center justify-center gap-2">
           <Button
             clickHandler={() => acceptRequest(user)}
             type="button"
