@@ -1,10 +1,17 @@
-import { RequestFeed, NotificationInNumber, ContactCard } from "../index";
+import {
+  RequestFeed,
+  NotificationInNumber,
+  ContactCard,
+  MobileProfileModal,
+} from "../index";
 import { randomNamesWithPictures } from "../../constants/Constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 const DesktopSecondaryColumn = () => {
   const [friendReq, setFriendReq] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState();
 
   // Function to fetch friend requests from the server
   const fetchFriendRequest = async () => {
@@ -56,12 +63,18 @@ const DesktopSecondaryColumn = () => {
                 {randomNamesWithPictures.map((item) => (
                   <ContactCard
                     key={item.id}
-                    name={item.username}
-                    picture={item.pic}
-                    status={item.status}
+                    user={item}
+                    open={isOpen}
+                    setIsOpen={setIsOpen}
+                    setSelectedUser={setSelectedUser}
                   />
                 ))}
               </div>
+              <MobileProfileModal
+                open={isOpen}
+                setOpen={setIsOpen}
+                user={selectedUser}
+              />
             </div>
           </div>
         </div>

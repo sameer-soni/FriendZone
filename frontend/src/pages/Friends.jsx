@@ -52,7 +52,7 @@ const Friends = () => {
       <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
         <div className="h-full rounded-lg">
           <div>
-            <div className="text-center">
+            <div className="text-center my-4">
               <div>
                 <ul
                   role="list"

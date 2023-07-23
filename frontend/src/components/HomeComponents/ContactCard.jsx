@@ -3,7 +3,11 @@ import { ActivityIcon } from "../index";
 import { UserIcon, InboxIcon } from "@heroicons/react/24/outline";
 import { Button } from "../index";
 
-const ContactCard = ({ picture, name, status }) => {
+const ContactCard = ({ user, setIsOpen, open, setSelectedUser }) => {
+  const handlerUserClick = () => {
+    setIsOpen(!open);
+    setSelectedUser(user);
+  };
   return (
     <div className="  flex flex-col w-full flex-shrink-0 py-4 px-1 cursor-pointer text-text-color">
       <div className="relative group">
@@ -13,20 +17,20 @@ const ContactCard = ({ picture, name, status }) => {
             {/* User profile picture */}
             <img
               className="inline-block h-9 w-9 rounded-full object-cover"
-              src={picture}
+              src={user.pic}
               alt=""
             />
           </div>
           <div className="ml-3">
             {/* User display name */}
             <div className="flex flex-row justify-between w-full">
-              <p className="text-sm font-bold uppercase">{name}</p>
+              <p className="text-sm font-bold uppercase">{user.username}</p>
             </div>
             {/* User status */}
             <span className="flex flex-row items-center justify-start space-x-1">
               {/* Activity icon based on user status */}
-              <ActivityIcon status={status} />
-              <p className="text-xs font-medium text-white">{status}</p>
+              <ActivityIcon status={user.status} />
+              <p className="text-xs font-medium text-white">{user.status}</p>
             </span>
           </div>
         </div>
@@ -38,7 +42,9 @@ const ContactCard = ({ picture, name, status }) => {
             type="button"
             className="inline-flex items-center rounded-full border border-transparent bg-transparent text-text-color shadow-sm hover:bg-primary-shade focus:outline-none focus:ring-2 border-white p-1"
           >
-            <UserIcon className="h-4 w-4" aria-hidden="true" />
+            <div onClick={handlerUserClick}>
+              <UserIcon className="h-4 w-4" aria-hidden="true" />
+            </div>
           </Button>
           {/* Button to send a message */}
           <Button
@@ -54,9 +60,9 @@ const ContactCard = ({ picture, name, status }) => {
 };
 
 ContactCard.propTypes = {
-  picture: PropTypes.string.isRequired, // User profile picture URL
-  name: PropTypes.string.isRequired, // User display name
-  status: PropTypes.string.isRequired, // User status (true or false)
+  user: PropTypes.object.isRequired, // User object
+  setIsOpen: PropTypes.func.isRequired, // Function to manage profile card
+  open: PropTypes.bool.isRequired, // State to manage profile card
 };
 
 export default ContactCard;
