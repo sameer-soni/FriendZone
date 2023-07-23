@@ -63,6 +63,7 @@ ContactCard.propTypes = {
   user: PropTypes.object.isRequired, // User object
   setIsOpen: PropTypes.func.isRequired, // Function to manage profile card
   open: PropTypes.bool.isRequired, // State to manage profile card
+  setSelectedUser: PropTypes.func, // Fuction to set selection user
 };
 
 export default ContactCard;
