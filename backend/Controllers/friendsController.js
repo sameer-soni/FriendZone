@@ -82,4 +82,27 @@ const fetch_requests = async (req, res) => {
   }
 };
 
-module.exports = { send_request, respond_to_request, fetch_requests };
+const fetch_friends = async (req, res) => {
+  const loggedUser = req.user;
+
+  try {
+    const friends = loggedUser.friends.filter((e) => {
+      return e.status === "accepted";
+    });
+
+    if (friends.length === 0) {
+      return res.json({ message: "no friend request" });
+    }
+
+    res.json({ friends });
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+};
+
+module.exports = {
+  send_request,
+  respond_to_request,
+  fetch_requests,
+  fetch_friends,
+};
