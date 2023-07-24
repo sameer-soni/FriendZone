@@ -33,7 +33,7 @@ const DesktopSecondaryColumn = () => {
   }, []);
 
   return (
-    <aside className="bg-main-shade text-text-color relative hidden w-72 flex-shrink-0 overflow-y-auto  xl:flex xl:flex-col overflow-x-hidden">
+    <aside className="bg-main-shade text-text-color relative hidden w-72 flex-shrink-0 overflow-y-auto custom-scrollbar  xl:flex xl:flex-col overflow-x-hidden">
       <div className="absolute inset-0">
         <div className="h-full px-5">
           <div>

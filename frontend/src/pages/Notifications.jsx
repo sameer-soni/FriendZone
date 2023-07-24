@@ -7,7 +7,7 @@ const Notifications = () => {
   return (
     <>
       {/* Main content area */}
-      <main className="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+      <main className="relative z-0 flex-1 overflow-y-auto focus:outline-none custom-scrollbar">
         {/* Absolute positioning for padding on the sides */}
         <div className="absolute inset-0 md:py-5 px-1 sm:px-6 lg:px-8">
           {/* Container with rounded corners */}
