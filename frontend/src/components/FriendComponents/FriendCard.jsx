@@ -16,7 +16,7 @@ const FriendCard = ({ person, user, setIsOpen, open, setSelectedUser }) => {
         <div className="relative overflow-hidden rounded-full">
           {/* User profile picture */}
           <img
-            className="mx-auto h-40 w-40 rounded-full xl:h-56 xl:w-56 object-cover group-hover:blur-sm duration-200"
+            className="mx-auto h-40 w-40 rounded-full  object-cover group-hover:blur-sm duration-200"
             src={person.pic}
             alt=""
           />
