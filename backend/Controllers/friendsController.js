@@ -58,6 +58,17 @@ const respond_to_request = async (req, res) => {
 
   if (status == "accept") {
     requestedUser.status = "accepted";
+
+    const reciever = await User.findById(requested_user_Id);
+    reciever.friends.push({
+      user: loggedUser._id,
+      name: loggedUser.username,
+      email: loggedUser.email,
+      pic: loggedUser.pic,
+      status: "accepted",
+    });
+
+    await reciever.save();
   } else if (status === "decline") {
     requestedUser.status = "rejected";
 

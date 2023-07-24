@@ -82,7 +82,7 @@ const Friends = () => {
                   role="list"
                   className="space-y-16 sm:grid sm:grid-cols-2 sm:gap-16 sm:space-y-0 lg:max-w-5xl lg:grid-cols-3 mx-auto"
                 >
-                  {friends.map((person) => (
+                  {friends?.map((person) => (
                     <FriendCard
                       key={person.name}
                       person={person}
