@@ -16,7 +16,7 @@ export default {
         "borders-color": "#9ca3af",
       },
       backgroundImage: {
-        "my-image": "url('./src/assets/Login-Sign-BackgroundImage.avif')",
+        "auth-bg-image": "url('./src/assets/Login-Sign-BackgroundImage.avif')",
       },
     },
   },

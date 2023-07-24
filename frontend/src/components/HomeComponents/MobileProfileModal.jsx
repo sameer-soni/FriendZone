@@ -61,10 +61,10 @@ const MobileProfileModal = ({ open, setOpen, user, children }) => {
                   <div>
                     <div className="relative flex flex-col items-center justify-center bg-main-shade text-text-color pb-4">
                       {/* User profile picture */}
-                      <div className="absolute -top-20 w-36 h-36 border-8 border-white drop-shadow-2xl rounded-full overflow-hidden">
+                      <div className="flex items-center justify-center absolute -top-20 w-36 h-36 border-8 border-white drop-shadow-2xl rounded-full overflow-hidden">
                         <img
                           src={user?.pic}
-                          className="w-full h-full object-cover object-left"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       {/* User display name */}
@@ -76,7 +76,12 @@ const MobileProfileModal = ({ open, setOpen, user, children }) => {
                         <div className="flex flex-col items-start justify-center">
                           <div className="font-bold text-base">Email</div>
                           <div className="font-semibold text-sm">
-                            {user?.email}
+                            {user?.email
+                              ? user?.email
+                              : (user?.username + "@gmail.com")
+                                  .split(" ")
+                                  .join("")
+                                  .toLocaleLowerCase()}
                           </div>
                         </div>
                         <div className="flex flex-col items-start justify-center">

@@ -30,3 +30,4 @@ export { default as SideProfileModal } from "./HomeComponents/DesktopProfileModa
 export { default as SearchModal } from "./HomeComponents/SearchModal";
 export { default as ActivityIcon } from "./ReUseableComponents/ActivityIcon";
 export { default as FriendCard } from "./FriendComponents/FriendCard";
+export { default as Notification } from "./NotificationComponents/Notification";

@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { InboxIcon } from "@heroicons/react/24/outline";
+import { ActivityIcon } from "../index";
 
 const SearchModal = ({ open, setOpen }) => {
   const [query, setQuery] = useState("");
@@ -117,12 +118,12 @@ const SearchModal = ({ open, setOpen }) => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Dialog.Panel className="mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
+            <Dialog.Panel className="mx-auto max-w-xl transform overflow-hidden rounded-xl bg-main-shade text-text-color shadow-2xl ring-1 ring-primary-shade ring-opacity-5 transition-all">
               <Combobox>
                 <div className="relative">
                   {/* Magnifying glass icon */}
                   <MagnifyingGlassIcon
-                    className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400"
+                    className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 "
                     aria-hidden="true"
                   />
                   {/* Search input */}
@@ -134,12 +135,12 @@ const SearchModal = ({ open, setOpen }) => {
                 </div>
 
                 {query === "" && (
-                  <div className="border-t border-gray-100 py-14 px-6 text-center text-sm sm:px-14">
+                  <div className="text-text-color border-t border-gray-100 py-14 px-6 text-center text-sm sm:px-14">
                     <GlobeAmericasIcon
-                      className="mx-auto h-6 w-6 text-gray-400"
+                      className="mx-auto h-6 w-6 "
                       aria-hidden="true"
                     />
-                    <p className="mt-4 font-semibold text-gray-900">
+                    <p className="mt-4 font-semibold ">
                       Search for users and projects
                     </p>
                     <p className="mt-2 text-gray-500">
@@ -162,19 +163,34 @@ const SearchModal = ({ open, setOpen }) => {
                             className={({ active }) =>
                               classNames(
                                 "cursor-default select-none px-4 py-2",
-                                active && "bg-primary-shade text-white"
+                                active && "shade text-white"
                               )
                             }
                           >
-                            <div className="flex flex-row items-center justify-between font-bold">
+                            <div className="flex flex-row items-center justify-between font-bold text-text-color">
                               <div className="flex flex-row items-center gap-x-2">
                                 {/* User profile picture */}
                                 <img
-                                  className="h-10 w-10 rounded-md object-cover"
+                                  className="h-10 w-10 rounded-full object-cover"
                                   src={user.pic}
                                   alt="Contact's Profile"
                                 />
-                                {user.username}
+                                <div className="ml-3">
+                                  {/* User display name */}
+                                  <div className="flex flex-row justify-between w-full">
+                                    <p className="text-sm font-bold uppercase">
+                                      {user.username}
+                                    </p>
+                                  </div>
+                                  {/* User status */}
+                                  <span className="flex flex-row items-center justify-start space-x-1">
+                                    {/* Activity icon based on user status */}
+                                    <ActivityIcon status="online" />
+                                    <p className="text-xs font-medium text-white">
+                                      online
+                                    </p>
+                                  </span>
+                                </div>
                               </div>
                               <div className="flex flex-row items-center justify-center">
                                 {/* Information icon */}
@@ -218,14 +234,12 @@ const SearchModal = ({ open, setOpen }) => {
                 )}
 
                 {query !== "" && users.length === 0 && (
-                  <div className="border-t border-gray-100 py-14 px-6 text-center text-sm sm:px-14">
+                  <div className=" text-text-color border-t border-gray-100 py-14 px-6 text-center text-sm sm:px-14">
                     <FaceFrownIcon
-                      className="mx-auto h-6 w-6 text-gray-400"
+                      className="mx-auto h-6 w-6 "
                       aria-hidden="true"
                     />
-                    <p className="mt-4 font-semibold text-gray-900">
-                      No results found
-                    </p>
+                    <p className="mt-4 font-semibold ">No results found</p>
                     <p className="mt-2 text-gray-500">
                       We couldn’t find anything with that term. Please try
                       again.

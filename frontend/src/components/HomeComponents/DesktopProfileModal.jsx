@@ -1,9 +1,10 @@
 import { Fragment, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon, BackspaceIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import Button from "../ReUseableComponents/Button";
 import { MyContext } from "../../context/MyContext";
+import { BiLogOut } from "react-icons/bi";
 
 const DesktopProfileModal = ({ open, setOpen }) => {
   // Access the loggedUser from the context
@@ -17,8 +18,8 @@ const DesktopProfileModal = ({ open, setOpen }) => {
 
         {/* Profile Modal */}
         <div
-          className={`fixed inset-0 overflow-hidden backdrop-blur-sm  bg-opacity-0 ${
-            open ? "bg-opacity-60" : ""
+          className={`fixed inset-0 overflow-hidden  bg-main-shade duration-200  bg-opacity-0 ${
+            open ? "bg-opacity-50" : ""
           } duration-500`}
         >
           <div className="absolute inset-0 overflow-hidden">
@@ -107,14 +108,14 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                           </div>
                           {/* Add more user details here */}
                           {/* ... */}
-                          <div className="mt-5 flex space-x-5">
+                          <div className="mt-5 flex">
                             {/* Back Button */}
                             <Button
                               type="button"
-                              className="inline-flex items-center rounded-full border border-transparent bg-transparent text-text-color shadow-sm hover:bg-primary-shade focus:outline-none focus:ring-2 border-white p-1"
+                              className="inline-flex items-center rounded-full border border-transparent bg-transparent text-text-color shadow-sm hover:bg-primary-shade focus:outline-none focus:ring-2 border-white p-2"
                             >
-                              <BackspaceIcon
-                                className="h-4 w-4"
+                              <BiLogOut
+                                className="h-5 w-5"
                                 aria-hidden="true"
                               />
                             </Button>
