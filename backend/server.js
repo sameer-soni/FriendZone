@@ -1,8 +1,8 @@
 const express = require("express");
-const app = express();
-const PORT = 8000;
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const app = express();
+const PORT = 8000;
 
 // Routers
 const authRouter = require("./Routes/auth");
@@ -28,9 +28,12 @@ mongoose
   .then(() => {
     console.log("connected to database");
 
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log("server has started on ", PORT);
     });
+
+    const { initializeSocketIO } = require("./socketio.js");
+    initializeSocketIO(server);
   })
   .catch((error) => {
     console.log(error);

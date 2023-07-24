@@ -10,7 +10,7 @@ import { MyContext } from "../context/MyContext";
 
 const Layout = () => {
   const navigate = useNavigate();
-  const { loggedUser, setLoggedUser } = useContext(MyContext);
+  const { loggedUser, setLoggedUser, socket } = useContext(MyContext);
 
   // Check if the user is logged in, if not, redirect to the sign-in page
   useEffect(() => {
@@ -19,6 +19,15 @@ const Layout = () => {
       // setLoggedUser(""); // You might uncomment this line if needed to set the logged user to an empty state
       navigate("/signin");
     }
+  }, []);
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("connected to socket.io");
+    });
+    socket.on("disconnect", () => {
+      console.log("Disconnected from server");
+    });
   }, []);
 
   return (

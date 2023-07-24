@@ -3,9 +3,13 @@ import { Button } from "../index";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useContext } from "react";
+import { MyContext } from "../../context/MyContext";
 
 const RequestFeed = ({ user }) => {
   const toast = useToast();
+  const { friendReq_response, setFriendReq_response } = useContext(MyContext);
+
   // Function to accept a friend request
   const acceptRequest = async (u) => {
     console.log(u);
@@ -19,6 +23,7 @@ const RequestFeed = ({ user }) => {
         { withCredentials: true }
       );
 
+      setFriendReq_response(!friendReq_response);
       // Show success toast when request is accepted
       toast({
         title: `Friend Request accepted`,
@@ -45,6 +50,7 @@ const RequestFeed = ({ user }) => {
         { withCredentials: true }
       );
 
+      setFriendReq_response(!friendReq_response);
       // Show error toast when request is rejected
       toast({
         title: `Friend Request rejected`,

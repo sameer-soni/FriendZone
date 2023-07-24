@@ -1,4 +1,5 @@
 const User = require("../Models/userSchema");
+const { getIO } = require("../socketio");
 
 const send_request = async (req, res) => {
   try {
@@ -37,6 +38,10 @@ const send_request = async (req, res) => {
     });
     await reciever.save();
 
+    //socket io
+    const io = getIO();
+    io.emit("new friend request");
+
     return res.json({ message: "Friend request sent successfully" });
   } catch (error) {
     return res.status(400).json({ error });
@@ -53,6 +58,17 @@ const respond_to_request = async (req, res) => {
 
   if (status == "accept") {
     requestedUser.status = "accepted";
+
+    const reciever = await User.findById(requested_user_Id);
+    reciever.friends.push({
+      user: loggedUser._id,
+      name: loggedUser.username,
+      email: loggedUser.email,
+      pic: loggedUser.pic,
+      status: "accepted",
+    });
+
+    await reciever.save();
   } else if (status === "decline") {
     requestedUser.status = "rejected";
 
@@ -82,4 +98,27 @@ const fetch_requests = async (req, res) => {
   }
 };
 
-module.exports = { send_request, respond_to_request, fetch_requests };
+const fetch_friends = async (req, res) => {
+  const loggedUser = req.user;
+
+  try {
+    const friends = loggedUser.friends.filter((e) => {
+      return e.status === "accepted";
+    });
+
+    if (friends.length === 0) {
+      return res.json({ message: "no friend request" });
+    }
+
+    res.json({ friends });
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+};
+
+module.exports = {
+  send_request,
+  respond_to_request,
+  fetch_requests,
+  fetch_friends,
+};
