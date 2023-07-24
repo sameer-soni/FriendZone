@@ -9,7 +9,6 @@ const LogoWithName = () => {
       {/* Render the Logo component */}
       <Logo />
       {/* Render the brand name */}
-      <span className="font-bold text-text-color">Socialify</span>
     </div>
   );
 };
