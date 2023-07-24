@@ -96,7 +96,7 @@ export const randomNamesWithPictures = [
 ];
 
 // Function to randomly return "online" or "offline" status
-function getRandomStatus() {
+export function getRandomStatus() {
   const statuses = ["online", "offline"];
   return statuses[Math.floor(Math.random() * statuses.length)];
 }

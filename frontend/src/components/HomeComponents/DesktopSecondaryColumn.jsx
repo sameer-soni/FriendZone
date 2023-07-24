@@ -60,7 +60,7 @@ const DesktopSecondaryColumn = () => {
                 <p className="font-semibold">Recent</p>
                 {/* Show the number of friend requests in a notification */}
                 <NotificationInNumber
-                  total={friendReq ? friendReq.length : "0"}
+                  total={friendReq ? friendReq.length : 0}
                 />
               </div>
               {/* Render friend requests or "No Friend Request" if none */}
