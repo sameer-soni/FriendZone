@@ -6,15 +6,19 @@ import {
 } from "../index";
 import { randomNamesWithPictures } from "../../constants/Constants";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { MyContext } from "../../context/MyContext";
 
 const DesktopSecondaryColumn = () => {
   const [friendReq, setFriendReq] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
 
+  const { socket, friendReq_response } = useContext(MyContext);
+
   // Function to fetch friend requests from the server
   const fetchFriendRequest = async () => {
+    console.log("in fetch friend req");
     try {
       const { data } = await axios.get(
         "http://localhost:8000/friend/fetchFriendRequest",
@@ -22,6 +26,7 @@ const DesktopSecondaryColumn = () => {
       );
 
       setFriendReq(data.friendRequests);
+      // console.log(data.friendRequests);
     } catch (error) {
       console.log(error);
     }
@@ -31,6 +36,18 @@ const DesktopSecondaryColumn = () => {
   useEffect(() => {
     fetchFriendRequest();
   }, []);
+
+  useEffect(() => {
+    fetchFriendRequest();
+  }, [friendReq_response]);
+
+  //socket io
+  useEffect(() => {
+    socket.on("new friend request", () => {
+      fetchFriendRequest();
+      // console.log("got new friend request");
+    });
+  }, [socket]);
 
   return (
     <aside className="bg-main-shade text-text-color relative hidden w-72 flex-shrink-0 overflow-y-auto custom-scrollbar  xl:flex xl:flex-col overflow-x-hidden">

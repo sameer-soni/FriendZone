@@ -1,4 +1,5 @@
 const User = require("../Models/userSchema");
+const { getIO } = require("../socketio");
 
 const send_request = async (req, res) => {
   try {
@@ -36,6 +37,10 @@ const send_request = async (req, res) => {
       pic: sender.pic,
     });
     await reciever.save();
+
+    //socket io
+    const io = getIO();
+    io.emit("new friend request");
 
     return res.json({ message: "Friend request sent successfully" });
   } catch (error) {

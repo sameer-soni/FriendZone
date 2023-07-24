@@ -2,14 +2,24 @@ import React, { createContext, useState } from "react";
 
 const MyContext = createContext();
 
-const MyContextProvier = ({ children }) => {
+const MyContextProvier = ({ children, socket }) => {
   const [loggedUser, setLoggedUser] = useState(() => {
     const userInfo = localStorage.getItem("userInfo");
     return userInfo ? JSON.parse(userInfo) : undefined;
   });
 
+  const [friendReq_response, setFriendReq_response] = useState(false);
+
   return (
-    <MyContext.Provider value={{ loggedUser, setLoggedUser }}>
+    <MyContext.Provider
+      value={{
+        loggedUser,
+        setLoggedUser,
+        socket,
+        friendReq_response,
+        setFriendReq_response,
+      }}
+    >
       {children}
     </MyContext.Provider>
   );
