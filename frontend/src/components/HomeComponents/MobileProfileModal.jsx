@@ -24,7 +24,7 @@ const MobileProfileModal = ({ open, setOpen, user, children }) => {
 
         {/* Mobile profile modal content */}
         <div className="fixed h-full bottom-1/2 inset-0 z-10 overflow-y-auto">
-          <div className="flex items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex items-end justify-center p-4 text-center sm:items-center sm:p-0 ">
             {/* Profile panel */}
             <Transition.Child
               as={Fragment}
@@ -35,7 +35,7 @@ const MobileProfileModal = ({ open, setOpen, user, children }) => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm border border-white">
                 <div className="flex flex-col relative">
                   <div className="flex h-7 items-center absolute right-5 top-2 z-10">
                     {/* Close button */}

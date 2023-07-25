@@ -29,7 +29,10 @@ const SearchBar = () => {
         >
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             {/* Magnifying glass icon for search */}
-            <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+            <MagnifyingGlassIcon
+              className="h-5 w-5 text-white"
+              aria-hidden="true"
+            />
           </div>
           {/* Input field for search */}
           <input
