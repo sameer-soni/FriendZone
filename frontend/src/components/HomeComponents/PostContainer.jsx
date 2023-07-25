@@ -8,7 +8,7 @@ const PostContainer = () => {
   const { loggedUser } = useContext(MyContext);
 
   return (
-    <div className=" bg-main-shade   py-4 w-full my-5 md:my-10 rounded-md flex flex-col divide-y divide-white space-y-5 drop-shadow-lg">
+    <div className=" bg-main-shade   py-4 w-full my-5  rounded-md flex flex-col divide-y divide-white space-y-5 drop-shadow-lg">
       <div className="flex flex-row items-center px-2">
         <img
           className="inline-block w-9  rounded-full object-cover h-9"

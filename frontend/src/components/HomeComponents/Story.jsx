@@ -15,7 +15,7 @@ const Story = ({ story }) => {
           className="inline-flex items-center rounded-full shadow-sm absolute top-2 left-2 border-2 border-white group-hover:top-1/2  group-hover:left-1/2 group-hover:-translate-x-1/2 group-hover:-translate-y-1/2 duration-300 group-hover:scale-150"
         >
           <div
-            className=" border-white rounded-full p-1"
+            className=" border-white rounded-full "
             onClick={() => console.log("added")}
           >
             <img

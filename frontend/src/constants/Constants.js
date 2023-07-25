@@ -289,13 +289,6 @@ export const stories = [
     source:
       "https://images.unsplash.com/photo-1612725558359-fb598a53b380?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bHxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
   },
-  {
-    user: randomNamesWithPictures[
-      Math.floor(Math.random() * randomNamesWithPictures.length)
-    ],
-    source:
-      "https://images.unsplash.com/photo-1501644898242-cfea317d7faf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJlYXV0aWZ1bHxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-  },
 ];
 function getRandomTimeAsString() {
   const now = new Date().getTime();
