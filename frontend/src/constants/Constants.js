@@ -297,3 +297,23 @@ export const stories = [
       "https://images.unsplash.com/photo-1501644898242-cfea317d7faf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJlYXV0aWZ1bHxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
   },
 ];
+function getRandomTimeAsString() {
+  const now = new Date().getTime();
+  const randomOffset = Math.floor(Math.random() * 86400000);
+  const randomTime = new Date(now - randomOffset);
+
+  return randomTime.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+export const feeds = [
+  {
+    user: randomNamesWithPictures[
+      Math.floor(Math.random() * randomNamesWithPictures.length)
+    ],
+    postMessage: "Best Ever Vecations!",
+    time: getRandomTimeAsString(),
+  },
+];

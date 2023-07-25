@@ -1,5 +1,4 @@
 import { Story } from "../index";
-
 import { stories } from "../../constants/Constants";
 
 const Stories = () => {

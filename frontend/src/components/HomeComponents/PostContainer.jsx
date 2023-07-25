@@ -1,9 +1,7 @@
 import { useContext } from "react";
 import { MyContext } from "../../context/MyContext";
-import { AiOutlineSend, AiOutlineTag } from "react-icons/ai";
+import { AiOutlineSend } from "react-icons/ai";
 import { GiWorld } from "react-icons/gi";
-import { MdOutlinePhotoCamera } from "react-icons/md";
-import { TbActivity } from "react-icons/tb";
 import { Button } from "../index";
 
 const PostContainer = () => {
@@ -37,27 +35,13 @@ const PostContainer = () => {
                 {/* Back Button */}
                 <Button
                   type="button"
-                  className="inline-flex items-center rounded-full border border-transparent bg-transparent text-white shadow-sm hover:bg-primary-shade focus:outline-none focus:ring-2 border-white p-1"
+                  className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-white shadow-sm   focus:outline-none focus:ring-2 border-white p-1"
                 >
-                  <AiOutlineSend className="h-4 w-4" aria-hidden="true" />
+                  <AiOutlineSend className=" h-4 w-4" aria-hidden="true" />
                 </Button>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="flex flex-row items-center justify-around py-5 px-2">
-        <div className="flex flex-row items-center gap-1 text-text-color">
-          <MdOutlinePhotoCamera className="h-4 w-4" aria-hidden="true" />
-          <span className="font-bold">Photos</span>
-        </div>
-        <div className="flex flex-row items-center gap-1 text-text-color">
-          <AiOutlineTag className="h-4 w-4" aria-hidden="true" />
-          <span className="font-bold">Tag</span>
-        </div>
-        <div className="flex flex-row items-center gap-1 text-text-color">
-          <TbActivity className="h-4 w-4" aria-hidden="true" />
-          <span className="font-bold">Activity</span>
         </div>
       </div>
     </div>
