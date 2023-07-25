@@ -1,3 +1,6 @@
+import { Feed, PostContainer, Stories } from "../components";
+import { feeds } from "../constants/Constants";
+
 // Define the Home component using a functional component
 export default function Home() {
   return (
@@ -10,7 +13,13 @@ export default function Home() {
         <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
           {/* A div with a dashed red border, creating a placeholder */}
           {/* This is useful for previewing the layout or as a placeholder for actual content */}
-          <div className="h-full rounded-lg border-2 border-dashed border-red-200" />
+          <div className="flex flex-col items-center justify-start h-full rounded-lg   px-5 py-5">
+            <Stories />
+            <PostContainer />
+            {feeds.map((feed) => (
+              <Feed key={feed.user.id} feed={feed} />
+            ))}
+          </div>
         </div>
         {/* End main area */}
       </main>

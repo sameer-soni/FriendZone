@@ -2,13 +2,14 @@ import { navigation } from "../../constants/Constants";
 import UserProfileCard from "./UserProfileCard";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { AiFillGithub } from "react-icons/ai";
 
 const Sidebar = () => {
   const [currentPage, setCurrentPage] = useState("");
   return (
     // Sidebar container with styles for width, background color, and other properties.
     <div className="bg-main-shade hidden w-64 overflow-y-auto md:block overflow-x-hidden  drop-shadow-2xl">
-      <div className="flex w-64 flex-col">
+      <div className="flex w-64 flex-col h-full ">
         <div className="flex min-h-0 flex-1 flex-col">
           {/* Component to display user profile card */}
           <UserProfileCard />
@@ -43,6 +44,12 @@ const Sidebar = () => {
                 ))}
               </div>
             </nav>
+          </div>
+        </div>
+        <div className="text-text-color">
+          <div className="font-bold flex  flex-row gap-x-1 items-center justify-center my-5 ">
+            <span>Github</span>
+            <AiFillGithub />
           </div>
         </div>
       </div>

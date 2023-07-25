@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import { ButtonLink, LogoWithName, SearchBar } from "../index";
+import { ButtonLink, Logo, SearchBar } from "../index";
 
 const Topbar = () => {
   return (
@@ -14,7 +14,7 @@ const Topbar = () => {
           <div className="relative flex h-16 items-center justify-between">
             {/* Logo section (hidden on small screens) */}
             <div className="items-center px-2 hidden md:block">
-              <LogoWithName />
+              <Logo />
             </div>
             {/* SearchBar and ButtonLink section */}
             <div className="w-full lg:w-1/3">

@@ -31,3 +31,8 @@ export { default as SearchModal } from "./HomeComponents/SearchModal";
 export { default as ActivityIcon } from "./ReUseableComponents/ActivityIcon";
 export { default as FriendCard } from "./FriendComponents/FriendCard";
 export { default as Notification } from "./NotificationComponents/Notification";
+export { default as RemoveUserModal } from "./FriendComponents/RemoveUserModal";
+export { default as Stories } from "./HomeComponents/Stories";
+export { default as Story } from "./HomeComponents/Story";
+export { default as PostContainer } from "./HomeComponents/PostContainer";
+export { default as Feed } from "./HomeComponents/Feed";

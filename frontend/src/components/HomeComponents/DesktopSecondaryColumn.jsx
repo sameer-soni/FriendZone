@@ -3,11 +3,13 @@ import {
   NotificationInNumber,
   ContactCard,
   MobileProfileModal,
+  Button,
 } from "../index";
 import { randomNamesWithPictures } from "../../constants/Constants";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../context/MyContext";
+import { GoPersonAdd } from "react-icons/go";
 
 const DesktopSecondaryColumn = () => {
   const [friendReq, setFriendReq] = useState([]);
@@ -60,7 +62,7 @@ const DesktopSecondaryColumn = () => {
                 <p className="font-semibold">Recent</p>
                 {/* Show the number of friend requests in a notification */}
                 <NotificationInNumber
-                  total={friendReq ? friendReq.length : "0"}
+                  total={friendReq ? friendReq.length : 0}
                 />
               </div>
               {/* Render friend requests or "No Friend Request" if none */}
@@ -91,7 +93,16 @@ const DesktopSecondaryColumn = () => {
                 open={isOpen}
                 setOpen={setIsOpen}
                 user={selectedUser}
-              />
+              >
+                <Button
+                  type="button"
+                  className="inline-flex items-center rounded-full border border-transparent bg-transparent text-text-color shadow-sm hover:bg-primary-shade focus:outline-none focus:ring-2 border-white p-1"
+                >
+                  <div onClick={() => console.log("added")}>
+                    <GoPersonAdd className="h-4 w-4" aria-hidden="true" />
+                  </div>
+                </Button>
+              </MobileProfileModal>
             </div>
           </div>
         </div>

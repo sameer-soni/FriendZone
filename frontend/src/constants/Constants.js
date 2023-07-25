@@ -96,7 +96,7 @@ export const randomNamesWithPictures = [
 ];
 
 // Function to randomly return "online" or "offline" status
-function getRandomStatus() {
+export function getRandomStatus() {
   const statuses = ["online", "offline"];
   return statuses[Math.floor(Math.random() * statuses.length)];
 }
@@ -257,5 +257,63 @@ export const notifications = [
     message: "Thanks for the mention in your story! 🙌",
     href: "#",
     status: Math.random() < 0.5 ? "online" : "offline",
+  },
+];
+
+export const randomStories = [
+  {
+    user: randomNamesWithPictures[0],
+    story:
+      "https://images.unsplash.com/photo-1568158951683-b5dadda4cd8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXRpZnVsfGVufDB8MXwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+  },
+];
+export const stories = [
+  {
+    user: randomNamesWithPictures[
+      Math.floor(Math.random() * randomNamesWithPictures.length)
+    ],
+    source:
+      "https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80",
+  },
+  {
+    user: randomNamesWithPictures[
+      Math.floor(Math.random() * randomNamesWithPictures.length)
+    ],
+    source:
+      "https://images.unsplash.com/photo-1614640384477-93219e3554a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGJlYXV0aWZ1bHxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+  },
+  {
+    user: randomNamesWithPictures[
+      Math.floor(Math.random() * randomNamesWithPictures.length)
+    ],
+    source:
+      "https://images.unsplash.com/photo-1612725558359-fb598a53b380?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bHxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+  },
+  {
+    user: randomNamesWithPictures[
+      Math.floor(Math.random() * randomNamesWithPictures.length)
+    ],
+    source:
+      "https://images.unsplash.com/photo-1501644898242-cfea317d7faf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJlYXV0aWZ1bHxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+  },
+];
+function getRandomTimeAsString() {
+  const now = new Date().getTime();
+  const randomOffset = Math.floor(Math.random() * 86400000);
+  const randomTime = new Date(now - randomOffset);
+
+  return randomTime.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+export const feeds = [
+  {
+    user: randomNamesWithPictures[
+      Math.floor(Math.random() * randomNamesWithPictures.length)
+    ],
+    postMessage: "Best Ever Vecations!",
+    time: getRandomTimeAsString(),
   },
 ];

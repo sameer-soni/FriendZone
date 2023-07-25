@@ -71,16 +71,16 @@ const Friends = () => {
     fetchFriendRequest();
   }, []);
   return (
-    <main className="relative z-0 flex-1 overflow-y-auto  focus:outline-none  custom-scrollbar ">
+    <main className="relative z-0 flex-1 overflow-y-auto  focus:outline-none   custom-scrollbar ">
       {/* Start main area */}
-      <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-        <div className="h-full rounded-lg">
+      <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8 ">
+        <div className="h-full rounded-lg bg-main-shade">
           <div>
             <div className="text-center my-4">
               <div>
                 <ul
                   role="list"
-                  className="space-y-16 sm:grid sm:grid-cols-2 sm:gap-16 sm:space-y-0 lg:max-w-5xl lg:grid-cols-3 mx-auto"
+                  className="grid grid-cols-1 gap-4 sm:grid-cols-2 py-5 px-5"
                 >
                   {friends?.map((person) => (
                     <FriendCard
