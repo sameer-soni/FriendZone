@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FriendCard, MobileProfileModal } from "../components";
 import axios from "axios";
 import { randomNamesWithPictures } from "../constants/Constants";
+import { MyContext } from "../context/MyContext";
 // const people = [
 //   {
 //     name: "Whitney Francis",
@@ -54,7 +55,9 @@ const Friends = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
 
-  const fetchFriendRequest = async () => {
+  const { socket } = useContext(MyContext);
+
+  const fetchFriends = async () => {
     try {
       const { data } = await axios.get(
         "http://localhost:8000/friend/fetchFriends",
@@ -68,8 +71,15 @@ const Friends = () => {
   };
 
   useEffect(() => {
-    fetchFriendRequest();
+    fetchFriends();
   }, []);
+
+  useEffect(() => {
+    socket.on("friend list updated", () => {
+      fetchFriends();
+    });
+  }, [socket]);
+
   return (
     <main className="relative z-0 flex-1 overflow-y-auto  focus:outline-none   custom-scrollbar ">
       {/* Start main area */}

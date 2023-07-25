@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { ActivityIcon } from "../index";
 import { BsThreeDots } from "react-icons/bs";
-const Feed = ({ feed }) => {
+const Feed = ({ feed, contentImg }) => {
   console.log(feed.time);
   return (
-    <div className="bg-main-shade w-full h-full rounded-md flex flex-col   text-text-color pt-5 my-2">
+    <div className="bg-main-shade w-full h-auto rounded-md flex flex-col   text-text-color pt-5 my-2 border border-cyan-400  ">
       <div>
         <div className="flex items-center justify-between px-2 mb-4 duration-500">
           <div className="flex flex-row">
@@ -39,8 +39,12 @@ const Feed = ({ feed }) => {
         </div>
         <img
           className="w-full object-cover md:mb-5 rounded-br-md rounded-bl-md"
-          src="https://images.unsplash.com/photo-1565462900119-a16b91dead9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXRpZnVsfGVufDB8MHwwfHx8MA%3D%3D&auto=format"
+          src={feed.img}
         />
+        <div className="w-full px-4 mb-2">
+          {/*text content*/}
+          {feed.content}
+        </div>
       </div>
     </div>
   );

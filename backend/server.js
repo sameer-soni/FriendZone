@@ -8,6 +8,7 @@ const PORT = 8000;
 const authRouter = require("./Routes/auth");
 const { userRouter } = require("./Routes/user");
 const { friendRouter } = require("./Routes/friend");
+const { postRouter } = require("./Routes/post");
 
 //middelwares
 app.use(express.urlencoded({ extended: true }));
@@ -42,6 +43,7 @@ mongoose
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/friend", friendRouter);
+app.use("/post", postRouter);
 // app.post("/test", authVerify, (req, res) => {
 //   console.log("in test");
 //   const user = req.user;

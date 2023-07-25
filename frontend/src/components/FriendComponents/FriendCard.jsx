@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { ActivityIcon, Button, RemoveUserModal } from "../index";
 import { UserIcon, InboxIcon } from "@heroicons/react/24/outline";
-import { MdLeakRemove } from "react-icons/md";
 import { getRandomStatus } from "../../constants/Constants";
+import { BsFillPersonXFill } from "react-icons/bs";
+import axios from "axios";
+import { useToast } from "@chakra-ui/react";
 
 const FriendCard = ({ person, user, setIsOpen, open, setSelectedUser }) => {
   const status = getRandomStatus();
@@ -14,9 +16,30 @@ const FriendCard = ({ person, user, setIsOpen, open, setSelectedUser }) => {
     setSelectedUser(user);
   };
 
+  const toast = useToast();
+
   // Handler fot removing user form friends
-  const handleRemoveFriend = () => {
+  const handleRemoveFriend = async () => {
     console.log(person.name, " is remove");
+    try {
+      await axios.post(
+        "http://localhost:8000/friend/removeFriend",
+        {
+          friend_id: person.user, //id of the user
+        },
+        { withCredentials: true }
+      );
+
+      toast({
+        title: `${person.name} is successfully removed from your friend list.`,
+        status: "success",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="relative flex items-center justify-between space-x-3 rounded-lg text-text-color border border-white px-6 py-5 shadow-sm hover:bg-seconday-shade duration-500 ">
@@ -54,13 +77,13 @@ const FriendCard = ({ person, user, setIsOpen, open, setSelectedUser }) => {
         >
           <InboxIcon className="h-4 w-4" aria-hidden="true" />
         </Button>
-        {/* Button to send a remove friend */}
+        {/* Button to remove friend */}
         <Button
           type="button"
-          className="inline-flex items-center rounded-full border border-transparent bg-transparent text-text-color shadow-sm hover:bg-primary-shade focus:outline-none focus:ring-2 border-white p-1"
+          className="inline-flex items-center rounded-full border border-transparent bg-transparent text-text-color shadow-sm hover:bg-red-500 focus:outline-none focus:ring-2 border-white p-1"
         >
           <div onClick={() => setRemoveFriendOpen(!removeFriendOpen)}>
-            <MdLeakRemove className="h-4 w-4" aria-hidden="true" />
+            <BsFillPersonXFill />
           </div>
         </Button>
       </div>

@@ -5,10 +5,35 @@ import PropTypes from "prop-types";
 import Button from "../ReUseableComponents/Button";
 import { MyContext } from "../../context/MyContext";
 import { BiLogOut } from "react-icons/bi";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 const DesktopProfileModal = ({ open, setOpen }) => {
+  const navigate = useNavigate();
+  const toast = useToast();
   // Access the loggedUser from the context
   const { loggedUser } = useContext(MyContext);
+
+  const handleLogout = async () => {
+    console.log("in handle logout");
+    try {
+      await axios.post("http://localhost:8000/auth/logout", null, {
+        withCredentials: true,
+      });
+      localStorage.removeItem("userInfo");
+      toast({
+        title: `Logout successfull`,
+        // status: "success",
+        duration: 1400,
+        position: "top",
+        isClosable: true,
+      });
+      navigate("/signin");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -109,10 +134,11 @@ const DesktopProfileModal = ({ open, setOpen }) => {
                           {/* Add more user details here */}
                           {/* ... */}
                           <div className="mt-5 flex">
-                            {/* Back Button */}
+                            {/* Logout Button */}
                             <Button
                               type="button"
                               className="inline-flex items-center rounded-full border border-transparent bg-transparent text-text-color shadow-sm hover:bg-primary-shade focus:outline-none focus:ring-2 border-white p-2"
+                              clickHandler={handleLogout}
                             >
                               <BiLogOut
                                 className="h-5 w-5"
