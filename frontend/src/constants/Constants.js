@@ -314,6 +314,15 @@ export const feeds = [
       Math.floor(Math.random() * randomNamesWithPictures.length)
     ],
     postMessage: "Best Ever Vecations!",
+    img: "https://images.unsplash.com/photo-1565462900119-a16b91dead9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXRpZnVsfGVufDB8MHwwfHx8MA%3D%3D&auto=format",
+  },
+  {
+    user: randomNamesWithPictures[
+      Math.floor(Math.random() * randomNamesWithPictures.length)
+    ],
+    postMessage: "Best Ever Vecations!",
+    content:
+      "hello everyone, today is a very beautiful day. How you guys feeling, tell in the comments.hello everyone, today is a very beautiful day. How you guys feeling, tell in the comments.hello everyone, today is a very beautiful day. How you guys feeling, tell in the comments.",
     time: getRandomTimeAsString(),
   },
 ];

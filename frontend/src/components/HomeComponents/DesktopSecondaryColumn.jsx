@@ -10,6 +10,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../context/MyContext";
 import { GoPersonAdd } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 
 const DesktopSecondaryColumn = () => {
   const [friendReq, setFriendReq] = useState([]);
@@ -17,6 +18,7 @@ const DesktopSecondaryColumn = () => {
   const [selectedUser, setSelectedUser] = useState();
 
   const { socket, friendReq_response } = useContext(MyContext);
+  const navigate = useNavigate();
 
   // Function to fetch friend requests from the server
   const fetchFriendRequest = async () => {
@@ -31,6 +33,11 @@ const DesktopSecondaryColumn = () => {
       // console.log(data.friendRequests);
     } catch (error) {
       console.log(error);
+      if (error.response.data.error === "no token") {
+        // alert("please login again!");
+        localStorage.removeItem("userInfo");
+        navigate("/signin");
+      }
     }
   };
 

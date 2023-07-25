@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       {/* Main content area */}
-      <main className="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+      <main className="relative z-0 flex-1 overflow-y-auto focus:outline-none custom-scrollbar">
         {/* Start main area*/}
         {/* An absolute positioned div that takes up the entire space */}
         {/* It creates a placeholder for the main content */}

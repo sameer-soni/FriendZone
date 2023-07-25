@@ -8,7 +8,7 @@ const MyContextProvier = ({ children, socket }) => {
     return userInfo ? JSON.parse(userInfo) : undefined;
   });
 
-  const [friendReq_response, setFriendReq_response] = useState(false);
+  const [friendReq_response, setFriendReq_response] = useState(false); //for re-fetching friend request
 
   return (
     <MyContext.Provider

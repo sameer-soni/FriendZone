@@ -107,7 +107,7 @@ const fetch_friends = async (req, res) => {
     });
 
     if (friends.length === 0) {
-      return res.json({ message: "no friend request" });
+      return res.json({ message: "no friend " });
     }
 
     res.json({ friends });
@@ -116,9 +116,41 @@ const fetch_friends = async (req, res) => {
   }
 };
 
+const remove_friend = async (req, res) => {
+  const { friend_id } = req.body;
+  const loggedUser = req.user;
+
+  if (!friend_id) {
+    return res.status(400).json({ error: "No friend selected to remove" });
+  }
+
+  try {
+    //removing from logged user
+    loggedUser.friends = loggedUser.friends.filter(
+      (e) => !e.user.equals(friend_id)
+    );
+
+    //removing from the another user
+    const friendUser = await User.findById(friend_id);
+    friendUser.friends = friendUser.friends.filter(
+      (e) => !e.user.equals(loggedUser._id)
+    );
+
+    await loggedUser.save();
+    await friendUser.save();
+
+    const io = getIO();
+    io.emit("friend list updated");
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+  return res.status(200).json({ loggedUser });
+};
+
 module.exports = {
   send_request,
   respond_to_request,
   fetch_requests,
   fetch_friends,
+  remove_friend,
 };
