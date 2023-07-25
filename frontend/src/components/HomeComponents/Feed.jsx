@@ -38,7 +38,7 @@ const Feed = ({ feed }) => {
           </div>
         </div>
         <img
-          className="w-full object-cover mb-5 rounded-br-md rounded-bl-md"
+          className="w-full object-cover md:mb-5 rounded-br-md rounded-bl-md"
           src="https://images.unsplash.com/photo-1565462900119-a16b91dead9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXRpZnVsfGVufDB8MHwwfHx8MA%3D%3D&auto=format"
         />
       </div>
