@@ -1,6 +1,6 @@
 // Importing required modules and components
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../context/MyContext";
 import { ActivityIcon } from "../index";
 import { BsThreeDots, BsShare } from "react-icons/bs";
@@ -12,6 +12,7 @@ import {
 } from "react-icons/ai";
 import { Button } from "../index";
 import { generateRandomFeedComments } from "../../constants/Constants";
+import axios from "axios";
 
 // Component definition for Feed
 const Feed = ({ feed, contentImg }) => {
@@ -20,6 +21,34 @@ const Feed = ({ feed, contentImg }) => {
 
   // Generating random feed comments using a utility function
   const randomFeedComments = generateRandomFeedComments();
+
+  const [comment, setComment] = useState("");
+
+  const [postComments, setPostComments] = useState([]); //this is to render comments
+
+  //function to addComments
+  const addComments = async () => {
+    console.log(feed);
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/post/add-comment",
+        {
+          comment,
+          post: feed,
+        },
+        { withCredentials: true }
+      );
+      // console.log(response.data.thisPost.comments);
+      setPostComments(response.data.thisPost.comments);
+      setComment("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    setPostComments(feed.comments);
+  }, []);
 
   // Rendering the Feed component
   return (
@@ -31,7 +60,7 @@ const Feed = ({ feed, contentImg }) => {
               {/* User profile picture */}
               <img
                 className="inline-block h-9 w-9 rounded-full object-cover"
-                src={feed.user.pic}
+                src={feed.owner.pic}
                 alt=""
               />
             </div>
@@ -39,16 +68,16 @@ const Feed = ({ feed, contentImg }) => {
               {/* User display name */}
               <div className="flex flex-row justify-between w-full">
                 <p className="text-sm font-bold uppercase">
-                  {feed.user.username}
+                  {feed.owner.username}
                 </p>
               </div>
               {/* User status */}
               <span className="flex flex-row items-center justify-start space-x-1">
                 {/* Activity icon based on user status */}
-                <ActivityIcon status={feed.user.status} />
+                {/* <ActivityIcon status={feed.user.status} />
                 <p className="text-xs font-medium text-white">
                   {feed.user.status}
-                </p>
+                </p> */}
               </span>
             </div>
           </div>
@@ -56,14 +85,15 @@ const Feed = ({ feed, contentImg }) => {
             <BsThreeDots />
           </div>
         </div>
+        <div className="w-full px-4 mb-2">
+          {/* content */}
+          {feed.content.caption}
+        </div>
         <img
           className="w-full object-cover rounded-br-md rounded-bl-md"
-          src={feed.img}
+          src={feed.content.pic}
         />
-        <div className="w-full px-4">
-          {/* Text content */}
-          {feed.content}
-        </div>
+
         <div className="flex flex-row w-full items-center justify-between px-2 pt-4">
           {/* Like button */}
           <span
@@ -114,12 +144,15 @@ const Feed = ({ feed, contentImg }) => {
                     placeholder={`Comment...`}
                     type="search"
                     autoComplete="off"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     {/* Send button */}
                     <Button
                       type="button"
                       className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-white shadow-sm focus:outline-none focus:ring-2 border-white p-1"
+                      clickHandler={addComments}
                     >
                       <AiOutlineSend className="h-4 w-4" aria-hidden="true" />
                     </Button>
@@ -128,34 +161,27 @@ const Feed = ({ feed, contentImg }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col w-full px-2 my-5">
+          <div className="flex flex-col w-full px-3 my-5 ">
             {/* Rendering random feed comments */}
-            {randomFeedComments.map((comment) => (
-              <div key={comment.user.id} className="my-5">
-                <div className="flex flex-row items-center justify-start my-2 ">
+            {postComments?.map((comment) => (
+              <div key={comment._id} className="my-5">
+                <div className="flex flex-row items-center justify-start my-2  ">
                   <img
                     className="inline-block w-9 rounded-full object-cover h-9"
-                    src={comment.user.pic}
+                    src={comment?.postedBy?.pic}
                   />
                   <div className="flex flex-col items-start justify-start ml-1">
                     <div className="font-bold text-sm">
-                      {comment.user.username}
+                      {comment?.postedBy?.username}
                     </div>
                     <div className="flex flex-col">
-                      <span className="flex flex-row items-center justify-start space-x-1">
-                        {/* Activity icon based on user status */}
-                        <ActivityIcon status={comment.user.status} />
-                        <p className="text-xs font-medium text-white">
-                          {comment.user.status}
-                        </p>
-                      </span>
+                      {/* <span className="flex flex-row items-center justify-start space-x-1">
+                        <p className="text-xs font-medium text-white"></p>
+                      </span> */}
                     </div>
                   </div>
                 </div>
-                <div className="w-full">
-                  {/* Text content of the comment */}
-                  {comment.comment}
-                </div>
+                <div className="w-full">{comment?.text}</div>
               </div>
             ))}
           </div>

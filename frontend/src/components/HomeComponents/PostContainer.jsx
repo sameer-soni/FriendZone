@@ -1,14 +1,90 @@
 // Import required dependencies and components
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../context/MyContext";
 import { AiOutlineSend } from "react-icons/ai";
 import { GiWorld } from "react-icons/gi";
 import { BiImageAdd } from "react-icons/bi";
 import { Button, InputFile } from "../index";
+import axios from "axios";
+import { useToast } from "@chakra-ui/react";
 
 const PostContainer = () => {
   // Access the loggedUser from the context using useContext hook
-  const { loggedUser } = useContext(MyContext);
+  const { loggedUser, fetchPostAgain, setFetchPostAgain } =
+    useContext(MyContext);
+
+  const [caption, setCaption] = useState("");
+  const [img, setImg] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
+
+  //function to upload img for post
+  const imgUpload = (pic) => {
+    setLoading(true);
+
+    toast({
+      title: `pic uploading....`,
+      // status: "success",
+      duration: 2500,
+      position: "top",
+      isClosable: true,
+    });
+
+    if (pic === undefined) {
+      alert("pic is undefined!");
+      retrun;
+    }
+
+    if (
+      pic.type === "image/png" ||
+      pic.type === "image/jpeg" ||
+      pic.type === "image/jpeg"
+    ) {
+      const data = new FormData();
+
+      data.append("file", pic);
+      data.append("upload_preset", "socialMeidaProject");
+      data.append("cloud_name", "dvjzuiyp1");
+
+      fetch("https://api.cloudinary.com/v1_1/dvjzuiyp1/image/upload", {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setImg(data.url.toString());
+          setLoading(false);
+          // console.log("this is url-> ", data.url.toString());
+        });
+    }
+  };
+
+  //function to create post
+  const createPost = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/post/create-post",
+        {
+          caption,
+          img,
+        },
+        { withCredentials: true }
+      );
+      console.log(response);
+      setCaption("");
+      toast({
+        title: `Posted`,
+        status: "success",
+        duration: 1800,
+        position: "top",
+        isClosable: true,
+      });
+      setFetchPostAgain(!fetchPostAgain);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     // Post Container - a flexbox container with a background color, padding, and rounded corners
@@ -42,18 +118,25 @@ const PostContainer = () => {
                 placeholder={`What's on your mind ${loggedUser?.username.toUpperCase()}?`} // Placeholder text with the user's username (if available)
                 type="search"
                 autoComplete="off"
+                value={caption}
+                onChange={(e) => setCaption(e.target.value)}
               />
               {/* Post Message Button */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                <Button
-                  type="button"
-                  className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-white shadow-sm focus:outline-none focus:ring-2 border-white p-1"
-                >
-                  <AiOutlineSend className="h-4 w-4" aria-hidden="true" />
-                </Button>
+                {loading ? (
+                  ""
+                ) : (
+                  <Button
+                    type="button"
+                    className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-white shadow-sm focus:outline-none focus:ring-2 border-white p-1"
+                    clickHandler={createPost}
+                  >
+                    <AiOutlineSend className="h-4 w-4" aria-hidden="true" />
+                  </Button>
+                )}
               </div>
               {/* Post Image Button */}
-              <div className="absolute inset-y-0 right-6 flex items-center pr-6">
+              <div className="absolute inset-y-0 right-6 flex items-center mr-6 ">
                 <Button
                   type="button"
                   className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-white shadow-sm focus:outline-none focus:ring-2 border-white p-1"
@@ -64,7 +147,7 @@ const PostContainer = () => {
                 <InputFile
                   id="userPhoto"
                   name="userPhoto"
-                  onChange={(e) => console.log("image uploaded")} // Log a message when an image is uploaded (you may implement image upload logic here)
+                  onChange={(e) => imgUpload(e.target.files[0])} // Log a message when an image is uploaded (you may implement image upload logic here)
                 />
               </div>
             </div>

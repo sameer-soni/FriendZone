@@ -20,4 +20,19 @@ const searchUser = async (req, res) => {
   return res.status(200).json({ users: searchedUser });
 };
 
-module.exports = { searchUser };
+const getSuggestedUser = async (req, res) => {
+  const loggedUser = req.user;
+  try {
+    const users = await User.find();
+
+    const getSuggestedUsers = users.filter(
+      (e) => !e._id.equals(loggedUser._id)
+    );
+
+    return res.status(200).json({ getSuggestedUsers });
+  } catch (error) {
+    return res.status(400).json({ error: "failed to get suggested users" });
+  }
+};
+
+module.exports = { searchUser, getSuggestedUser };

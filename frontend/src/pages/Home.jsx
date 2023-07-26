@@ -1,8 +1,34 @@
+import axios from "axios";
 import { Feed, PostContainer, Stories } from "../components";
 import { feeds } from "../constants/Constants";
+import { useContext, useEffect, useState } from "react";
+import { MyContext } from "../context/MyContext";
 
 // Define the Home component using a functional component
 export default function Home() {
+  const [posts, setPosts] = useState([]);
+  const { fetchPostAgain } = useContext(MyContext);
+
+  const fetchPosts = async () => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:8000/post/fetch-post",
+        { withCredentials: true }
+      );
+      // console.log(data.posts);
+      setPosts(data.posts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPostAgain]);
+
   return (
     <>
       {/* Main content area */}
@@ -16,8 +42,8 @@ export default function Home() {
           <Stories />
           <div className="flex flex-col items-center justify-start h-full rounded-lg   md:px-5 py-5">
             <PostContainer />
-            {feeds.map((feed) => (
-              <Feed key={feed.user.id} feed={feed} />
+            {posts.map((feed) => (
+              <Feed key={feed._id} feed={feed} />
             ))}
           </div>
         </div>

@@ -9,7 +9,7 @@ const ContactCard = ({ user, setIsOpen, open, setSelectedUser }) => {
     setSelectedUser(user);
   };
   return (
-    <div className="  flex flex-col w-full flex-shrink-0 py-4 px-1 cursor-pointer text-text-color">
+    <div className="  flex flex-col w-full flex-shrink-0 py-4 px-1 cursor-pointer text-text-color bg-contact-shade rounded-md">
       <div className="relative group">
         {/* User profile picture and display name */}
         <div className="flex items-center group-hover:translate-x-20 group-hover:blur-sm duration-500">
@@ -29,7 +29,7 @@ const ContactCard = ({ user, setIsOpen, open, setSelectedUser }) => {
             {/* User status */}
             <span className="flex flex-row items-center justify-start space-x-1">
               {/* Activity icon based on user status */}
-              <ActivityIcon status={user.status} />
+              {/* <ActivityIcon status={user.status} /> */}
               <p className="text-xs font-medium text-white">{user.status}</p>
             </span>
           </div>
