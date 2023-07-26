@@ -161,10 +161,12 @@ const Feed = ({ feed }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row items-center justify-between px-2 my-5 ">
+          <div className="flex flex-row items-center justify-between px-4 my-5 ">
             <div
               onClick={() => setOpenComments(!openComments)}
-              className="flex flex-row items-center font-bold  duration-500 cursor-pointer"
+              className={`flex flex-row items-center font-bold  duration-500 cursor-pointer ${
+                postComments.length > 0 ? "" : "hidden"
+              } `}
             >
               View Comments
               {openComments ? (
@@ -172,6 +174,11 @@ const Feed = ({ feed }) => {
               ) : (
                 <IoIosArrowDown className="ml-1" />
               )}
+            </div>
+            <div className="font-bold">
+              {postComments.length == 0
+                ? "No Comments Yet"
+                : postComments.length + " comments"}
             </div>
           </div>
 
@@ -182,19 +189,22 @@ const Feed = ({ feed }) => {
           >
             {/* Rendering random feed comments */}
             {postComments?.map((comment) => (
-              <div key={comment._id} className="my-5">
-                <div className="flex flex-row items-center justify-start my-2  ">
+              <div
+                key={comment._id}
+                className="my-5 bg-seconday-shade rounded-md px-2 py-2 "
+              >
+                <div className="flex flex-row items-center justify-start my-2   ">
                   <img
                     className="inline-block w-9 rounded-full object-cover h-9"
                     src={comment?.postedBy?.pic}
                   />
-                  <div className="flex flex-col items-start justify-start ml-1">
+                  <div className="flex flex-col items-start justify-start ml-2 uppercase">
                     <div className="font-bold text-sm">
                       {comment?.postedBy?.username}
                     </div>
                   </div>
                 </div>
-                <div className="w-full bg-seconday-shade py-2 pl-5 rounded-md">
+                <div className="w-full  py-2 pl-5 rounded-md bg-main-shade">
                   {comment?.text}
                 </div>
               </div>

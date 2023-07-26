@@ -9,7 +9,7 @@ const ContactCard = ({ user, setIsOpen, open, setSelectedUser }) => {
     setSelectedUser(user);
   };
   return (
-    <div className="  flex flex-col w-full flex-shrink-0 py-4 px-1 cursor-pointer text-text-color bg-contact-shade rounded-md">
+    <div className="  flex flex-col w-full flex-shrink-0 py-4 px-1 cursor-pointer text-text-color  rounded-md">
       <div className="relative group">
         {/* User profile picture and display name */}
         <div className="flex items-center group-hover:translate-x-20 group-hover:blur-sm duration-500">
