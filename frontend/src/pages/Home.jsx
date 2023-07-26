@@ -14,8 +14,7 @@ export default function Home() {
           {/* A div with a dashed red border, creating a placeholder */}
           {/* This is useful for previewing the layout or as a placeholder for actual content */}
           <Stories />
-
-          <div className="flex flex-col items-center justify-start h-full rounded-lg   px-5 py-5">
+          <div className="flex flex-col items-center justify-start h-full rounded-lg   md:px-5 py-5">
             <PostContainer />
             {feeds.map((feed) => (
               <Feed key={feed.user.id} feed={feed} />
