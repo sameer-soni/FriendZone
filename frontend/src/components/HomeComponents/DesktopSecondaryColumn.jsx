@@ -58,6 +58,25 @@ const DesktopSecondaryColumn = () => {
     });
   }, [socket]);
 
+  //function to fetch suggested users
+  const [suggestedUsers, setSuggestedUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchSuggestedUsers = async () => {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:8000/user/getSuggestedUsers",
+          { withCredentials: true }
+        );
+        // console.log(data.getSuggestedUsers);
+        setSuggestedUsers(data.getSuggestedUsers);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSuggestedUsers();
+  }, []);
+
   return (
     <aside className="bg-main-shade text-text-color relative hidden w-72 flex-shrink-0 overflow-y-auto custom-scrollbar  xl:flex xl:flex-col overflow-x-hidden">
       <div className="absolute inset-0">
@@ -86,9 +105,9 @@ const DesktopSecondaryColumn = () => {
               </div>
               <div className="flex flex-col gap-2 mt-4">
                 {/* Render contact cards with name, picture, and status */}
-                {randomNamesWithPictures.map((item) => (
+                {suggestedUsers.map((item) => (
                   <ContactCard
-                    key={item.id}
+                    key={item._id}
                     user={item}
                     open={isOpen}
                     setIsOpen={setIsOpen}

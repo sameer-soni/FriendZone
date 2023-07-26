@@ -9,6 +9,7 @@ const MyContextProvier = ({ children, socket }) => {
   });
 
   const [friendReq_response, setFriendReq_response] = useState(false); //for re-fetching friend request
+  const [fetchPostAgain, setFetchPostAgain] = useState(false); //for re-fetching friend request
 
   return (
     <MyContext.Provider
@@ -18,6 +19,8 @@ const MyContextProvier = ({ children, socket }) => {
         socket,
         friendReq_response,
         setFriendReq_response,
+        fetchPostAgain,
+        setFetchPostAgain,
       }}
     >
       {children}
