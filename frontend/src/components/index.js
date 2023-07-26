@@ -36,3 +36,4 @@ export { default as Stories } from "./HomeComponents/Stories";
 export { default as Story } from "./HomeComponents/Story";
 export { default as PostContainer } from "./HomeComponents/PostContainer";
 export { default as Feed } from "./HomeComponents/Feed";
+export { default as AddStoryModal } from "./HomeComponents/AddStoryModal";

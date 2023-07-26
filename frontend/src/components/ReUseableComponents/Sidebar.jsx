@@ -2,7 +2,6 @@ import { navigation } from "../../constants/Constants";
 import UserProfileCard from "./UserProfileCard";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { AiFillGithub } from "react-icons/ai";
 
 const Sidebar = () => {
   const [currentPage, setCurrentPage] = useState("");
@@ -44,12 +43,6 @@ const Sidebar = () => {
                 ))}
               </div>
             </nav>
-          </div>
-        </div>
-        <div className="text-text-color">
-          <div className="font-bold flex  flex-row gap-x-1 items-center justify-center my-5 ">
-            <span>Github</span>
-            <AiFillGithub />
           </div>
         </div>
       </div>

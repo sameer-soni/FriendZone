@@ -289,13 +289,6 @@ export const stories = [
     source:
       "https://images.unsplash.com/photo-1612725558359-fb598a53b380?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bHxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
   },
-  {
-    user: randomNamesWithPictures[
-      Math.floor(Math.random() * randomNamesWithPictures.length)
-    ],
-    source:
-      "https://images.unsplash.com/photo-1501644898242-cfea317d7faf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJlYXV0aWZ1bHxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-  },
 ];
 function getRandomTimeAsString() {
   const now = new Date().getTime();
@@ -326,3 +319,38 @@ export const feeds = [
     time: getRandomTimeAsString(),
   },
 ];
+
+const comments = [
+  "Your photography skills are exceptional! The composition and colors in this picture are simply stunning. I'm blown away by your talent!",
+  "Wow! This picture is like a work of art. The way you captured the beauty of the moment is truly remarkable. I could stare at it for hours.",
+  "This picture speaks a thousand words. I love the way you've framed the scene and the emotions it conveys. Keep up the fantastic work!",
+  "Incredible shot! The lighting and shadows add so much depth to this image. It's clear that you have a great eye for photography.",
+  "This is pure magic! I can't get over how captivating this picture is. Your photography skills are truly impressive.",
+  "You've managed to capture a moment of pure beauty in this picture. It's like stepping into a dream. Absolutely breathtaking!",
+  "I'm in awe of your talent! The details and colors in this photo are exquisite. You have a gift for capturing the essence of a scene.",
+  "This picture tells a story and evokes so much emotion. It's like stepping into a different world. Thank you for sharing your art!",
+  "This photo is a masterpiece! The composition, lighting, and subject are all perfectly aligned. You have a real talent for photography.",
+  "Your photography is out of this world! This picture is mesmerizing, and I can't get enough of it. Keep sharing your incredible work!",
+];
+
+// Function to generate a random comment
+export const generateRandomComment = () => {
+  const randomIndex = Math.floor(Math.random() * comments.length);
+  return comments[randomIndex];
+};
+
+export const generateRandomFeedComments = () => {
+  const numberOfComments = Math.floor(Math.random() * 3) + 1; // Random number of comments between 1 and 3
+  const feedComments = [];
+
+  for (let i = 0; i < numberOfComments; i++) {
+    feedComments.push({
+      user: randomNamesWithPictures[
+        Math.floor(Math.random() * randomNamesWithPictures.length)
+      ],
+      comment: generateRandomComment(),
+    });
+  }
+
+  return feedComments;
+};
