@@ -4,7 +4,7 @@ import { BsThreeDots } from "react-icons/bs";
 const Feed = ({ feed, contentImg }) => {
   console.log(feed.time);
   return (
-    <div className="bg-main-shade w-full h-auto rounded-md flex flex-col   text-text-color pt-5 my-2 border border-cyan-400  ">
+    <div className="bg-main-shade w-full h-auto rounded-md flex flex-col   text-text-color py-5 my-2 border border-cyan-400  ">
       <div>
         <div className="flex items-center justify-between px-2 mb-4 duration-500">
           <div className="flex flex-row">
@@ -38,10 +38,10 @@ const Feed = ({ feed, contentImg }) => {
           </div>
         </div>
         <img
-          className="w-full object-cover md:mb-5 rounded-br-md rounded-bl-md"
+          className="w-full object-cover  rounded-br-md rounded-bl-md"
           src={feed.img}
         />
-        <div className="w-full px-4 mb-2">
+        <div className="w-full px-4 ">
           {/*text content*/}
           {feed.content}
         </div>
