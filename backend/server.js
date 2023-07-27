@@ -44,6 +44,10 @@ app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/friend", friendRouter);
 app.use("/post", postRouter);
+
+const fetchNotification = require("./Controllers/fetchNotification");
+const { authVerify } = require("./Controllers/authController");
+app.get("/notification", authVerify, fetchNotification); // direct called controller here
 // app.post("/test", authVerify, (req, res) => {
 //   console.log("in test");
 //   const user = req.user;
