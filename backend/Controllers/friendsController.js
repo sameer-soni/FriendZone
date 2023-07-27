@@ -1,3 +1,4 @@
+const Notification = require("../Models/notificationSchema");
 const User = require("../Models/userSchema");
 const { getIO } = require("../socketio");
 
@@ -42,6 +43,14 @@ const send_request = async (req, res) => {
     const io = getIO();
     io.emit("new friend request");
 
+    //notification
+    const newNotification = new Notification({
+      reciever: recieverId,
+      sender: sender._id,
+      notification: `${sender.username} has sent friend request`,
+    });
+    await newNotification.save();
+
     return res.json({ message: "Friend request sent successfully" });
   } catch (error) {
     return res.status(400).json({ error });
@@ -69,6 +78,14 @@ const respond_to_request = async (req, res) => {
     });
 
     await reciever.save();
+
+    //notification
+    const newNotification = new Notification({
+      reciever: requested_user_Id,
+      sender: loggedUser,
+      notification: `${loggedUser.username} has accepted your friend request`,
+    });
+    await newNotification.save();
   } else if (status === "decline") {
     requestedUser.status = "rejected";
 

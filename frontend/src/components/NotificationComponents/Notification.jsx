@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import { ActivityIcon } from "../index";
 import { CheckCircleIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import { MdCircleNotifications } from "react-icons/md";
 
 const Notification = ({ notification }) => {
   return (
-    <li key={notification.user.email}>
+    <li key={notification.sender.email}>
       {/* Link to the notification href */}
       <a
         href={notification.href}
@@ -16,56 +17,54 @@ const Notification = ({ notification }) => {
             <div className="flex-shrink-0">
               <img
                 className="h-12 w-12 rounded-full object-cover"
-                src={notification.user.imageUrl}
+                src={notification.sender.pic}
                 alt=""
               />
             </div>
-            <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-              <div>
+            <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4 ">
+              <div className=" flex items-center ">
                 {/* User name */}
-                <p className="truncate text-sm font-medium text-primary-shade">
-                  {notification.user.name}
+                <p className="truncate text-lg font-medium text-primary-shade   ">
+                  {notification.sender.username}
                 </p>
-                <div className="mt-2 flex items-center text-sm text-gray-500">
-                  <div className="flex flex-row items-center justify-start space-x-1">
-                    {/* Activity icon based on user status */}
-                    <ActivityIcon status={notification.status} />
-                    {/* User status */}
-                    <div className="text-xs font-medium text-white">
-                      {notification.status}
-                    </div>
-                  </div>
-                </div>
               </div>
-              <div className="hidden md:block">
+              <div className="">
                 <div>
                   {/* Notification date */}
                   <p className="text-sm text-text-color">
-                    Sent On{" "}
-                    <time dateTime={notification.date}>
-                      {notification.dateFull}
+                    {/* Sent On:{" "} */}
+                    <time dateTime={notification.createdAt}>
+                      {/* {notification.createdAt} */}
+                      {new Date(notification.createdAt).toLocaleString()}
                     </time>
                   </p>
                   {/* Notification message */}
                   <p className="mt-2 flex items-center text-sm text-gray-500">
                     {/* Check circle icon */}
-                    <CheckCircleIcon
+                    {/* <CheckCircleIcon
+                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400"
+                      aria-hidden="true"
+                    /> */}
+                    <MdCircleNotifications
                       className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400"
                       aria-hidden="true"
                     />
-                    {notification.message}
+
+                    {notification.notification}
                   </p>
+
+                  {/* in phone devices */}
                 </div>
               </div>
             </div>
           </div>
           {/* Right chevron icon */}
-          <div>
+          {/* <div>
             <ChevronRightIcon
               className="h-5 w-5 text-gray-400"
               aria-hidden="true"
             />
-          </div>
+          </div> */}
         </div>
       </a>
     </li>
