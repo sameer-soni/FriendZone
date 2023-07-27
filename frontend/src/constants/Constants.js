@@ -9,7 +9,7 @@ import {
 
 export const navigation = [
   { name: "Home", href: "/", icon: HomeIcon, current: true },
-  { name: "Photos", href: "#", icon: PhotoIcon, current: false },
+  { name: "Photos", href: "/photos", icon: PhotoIcon, current: false },
   { name: "Friends", href: "/friends", icon: UserGroupIcon, current: false },
   {
     name: "Profile",

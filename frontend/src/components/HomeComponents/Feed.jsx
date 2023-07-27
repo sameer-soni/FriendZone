@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../context/MyContext";
-import { ActivityIcon } from "../index";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { BsThreeDots, BsShare } from "react-icons/bs";
 import {
   AiOutlineLike,
@@ -11,16 +11,16 @@ import {
   AiOutlineSend,
 } from "react-icons/ai";
 import { Button } from "../index";
-import { generateRandomFeedComments } from "../../constants/Constants";
 import axios from "axios";
 
 // Component definition for Feed
-const Feed = ({ feed, contentImg }) => {
+const Feed = ({ feed }) => {
+  const [openComments, setOpenComments] = useState(false);
+
   // Using the useContext hook to get data from MyContext
   const { loggedUser } = useContext(MyContext);
 
   // Generating random feed comments using a utility function
-  const randomFeedComments = generateRandomFeedComments();
 
   const [comment, setComment] = useState("");
 
@@ -161,27 +161,52 @@ const Feed = ({ feed, contentImg }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col w-full px-3 my-5 ">
+          <div className="flex flex-row items-center justify-between px-4 my-5 ">
+            <div
+              onClick={() => setOpenComments(!openComments)}
+              className={`flex flex-row items-center font-bold  duration-500 cursor-pointer ${
+                postComments.length > 0 ? "" : "hidden"
+              } `}
+            >
+              View Comments
+              {openComments ? (
+                <IoIosArrowUp className="ml-1" />
+              ) : (
+                <IoIosArrowDown className="ml-1" />
+              )}
+            </div>
+            <div className="font-bold">
+              {postComments.length == 0
+                ? "No Comments Yet"
+                : postComments.length + " comments"}
+            </div>
+          </div>
+
+          <div
+            className={`${
+              openComments ? "flex" : "hidden"
+            }  flex-col w-full px-3 my-5`}
+          >
             {/* Rendering random feed comments */}
             {postComments?.map((comment) => (
-              <div key={comment._id} className="my-5">
-                <div className="flex flex-row items-center justify-start my-2  ">
+              <div
+                key={comment._id}
+                className="my-5 bg-seconday-shade rounded-md px-2 py-2 "
+              >
+                <div className="flex flex-row items-center justify-start my-2   ">
                   <img
                     className="inline-block w-9 rounded-full object-cover h-9"
                     src={comment?.postedBy?.pic}
                   />
-                  <div className="flex flex-col items-start justify-start ml-1">
+                  <div className="flex flex-col items-start justify-start ml-2 uppercase">
                     <div className="font-bold text-sm">
                       {comment?.postedBy?.username}
                     </div>
-                    <div className="flex flex-col">
-                      {/* <span className="flex flex-row items-center justify-start space-x-1">
-                        <p className="text-xs font-medium text-white"></p>
-                      </span> */}
-                    </div>
                   </div>
                 </div>
-                <div className="w-full">{comment?.text}</div>
+                <div className="w-full  py-2 pl-5 rounded-md bg-main-shade">
+                  {comment?.text}
+                </div>
               </div>
             ))}
           </div>

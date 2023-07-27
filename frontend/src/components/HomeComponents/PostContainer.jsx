@@ -150,6 +150,21 @@ const PostContainer = () => {
                   onChange={(e) => imgUpload(e.target.files[0])} // Log a message when an image is uploaded (you may implement image upload logic here)
                 />
               </div>
+              {/* Post Image Button */}
+              <div className="absolute inset-y-0 right-6 flex items-center pr-6">
+                <Button
+                  type="button"
+                  className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-white shadow-sm focus:outline-none focus:ring-2 border-white p-1"
+                >
+                  <BiImageAdd className="h-4 w-4" aria-hidden="true" />
+                </Button>
+                {/* Input field for uploading an image */}
+                <InputFile
+                  id="userPhoto"
+                  name="userPhoto"
+                  onChange={(e) => console.log("image uploaded")} // Log a message when an image is uploaded (you may implement image upload logic here)
+                />
+              </div>
             </div>
           </div>
         </div>
