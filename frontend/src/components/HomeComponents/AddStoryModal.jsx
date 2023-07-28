@@ -26,8 +26,8 @@ const AddStoryModal = ({ open, setOpen, handleOnStoryAdd }) => {
         </Transition.Child>
 
         {/* Modal Content */}
-        <div className="fixed inset-0 z-10 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+        <div className="fixed inset-0 z-10 overflow-y-auto ">
+          <div className="flex min-h-full  items-center justify-center p-4 text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -38,7 +38,7 @@ const AddStoryModal = ({ open, setOpen, handleOnStoryAdd }) => {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               {/* Modal Panel */}
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg border border-white bg-main-shade text-text-color px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+              <Dialog.Panel className="relative w-full transform overflow-hidden rounded-lg border border-white bg-main-shade text-text-color px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8  sm:max-w-sm sm:p-6">
                 <div>
                   {/* Label and input field for the Story Link */}
                   <label htmlFor="email" className="block text-sm font-bold">

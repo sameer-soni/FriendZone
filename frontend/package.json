@@ -17,6 +17,7 @@
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "axios": "^1.4.0",
+    "embla-carousel-react": "^8.0.0-rc11",
     "framer-motion": "^10.12.21",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

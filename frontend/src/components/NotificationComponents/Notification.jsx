@@ -58,13 +58,6 @@ const Notification = ({ notification }) => {
               </div>
             </div>
           </div>
-          {/* Right chevron icon */}
-          {/* <div>
-            <ChevronRightIcon
-              className="h-5 w-5 text-gray-400"
-              aria-hidden="true"
-            />
-          </div> */}
         </div>
       </a>
     </li>
@@ -77,23 +70,23 @@ Notification.propTypes = {
   notification: PropTypes.shape({
     user: PropTypes.shape({
       // User name (required)
-      name: PropTypes.string.isRequired,
+      name: PropTypes.string,
       // User email (required)
-      email: PropTypes.string.isRequired,
+      email: PropTypes.string,
       // User avatar image URL (required)
-      imageUrl: PropTypes.string.isRequired,
-    }).isRequired,
+      imageUrl: PropTypes.string,
+    }),
     // Date in YYYY-MM-DD format (required)
-    date: PropTypes.string.isRequired,
+    date: PropTypes.string,
     // Full date description (e.g., January 7, 2020) (required)
-    dateFull: PropTypes.string.isRequired,
+    dateFull: PropTypes.string,
     // Notification message (required)
-    message: PropTypes.string.isRequired,
+    message: PropTypes.string,
     // Link to the notification destination (required)
-    href: PropTypes.string.isRequired,
+    href: PropTypes.string,
     // Status of the user (online or offline) (required)
-    status: PropTypes.oneOf(["online", "offline"]).isRequired,
-  }).isRequired,
+    status: PropTypes.oneOf(["online", "offline"]),
+  }),
 };
 
 export default Notification;

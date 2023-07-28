@@ -12,18 +12,11 @@ export const navigation = [
   { name: "Photos", href: "/photos", icon: PhotoIcon, current: false },
   { name: "Friends", href: "/friends", icon: UserGroupIcon, current: false },
   {
-    name: "Profile",
-    href: "#",
-    icon: UserIcon,
-    current: false,
-  },
-  {
     name: "Notifications",
     href: "/notifications",
     icon: BellIcon,
     current: false,
   },
-  { name: "Settings", href: "#", icon: CogIcon, current: false },
 ];
 
 export const userNavigation = [
@@ -281,6 +274,27 @@ export const stories = [
     ],
     source:
       "https://images.unsplash.com/photo-1614640384477-93219e3554a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGJlYXV0aWZ1bHxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+  },
+  {
+    user: randomNamesWithPictures[
+      Math.floor(Math.random() * randomNamesWithPictures.length)
+    ],
+    source:
+      "https://images.unsplash.com/photo-1665255865070-5e17bdea66d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+  },
+  {
+    user: randomNamesWithPictures[
+      Math.floor(Math.random() * randomNamesWithPictures.length)
+    ],
+    source:
+      "https://images.unsplash.com/photo-1673444404834-15725d6f304d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
+  },
+  {
+    user: randomNamesWithPictures[
+      Math.floor(Math.random() * randomNamesWithPictures.length)
+    ],
+    source:
+      "https://images.unsplash.com/photo-1690205074022-560b3587cbc4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
   },
   {
     user: randomNamesWithPictures[
