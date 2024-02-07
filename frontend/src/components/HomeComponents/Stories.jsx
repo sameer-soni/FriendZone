@@ -41,7 +41,7 @@ const Stories = () => {
           <div className="relative embla__slide flex-shrink-0 w-full md:w-1/3">
             <div className="relative group aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-md">
               {/* Display loggedUserStory's image */}
-              <img className="blur-sm" src={loggedUserStory.source} />
+              <img className="blur-sm" src={loggedUserStory?.source} />
               <div onClick={() => setOpenStoryModal(!openStoryModal)}>
                 {/* Add Story Button */}
                 <Button
@@ -55,7 +55,7 @@ const Stories = () => {
                   >
                     <img
                       className="inline-block h-9 w-9 rounded-full object-cover"
-                      src={loggedUserStory.user.pic}
+                      src={loggedUserStory?.user?.pic}
                       alt=""
                     />
                     <IoMdAdd
