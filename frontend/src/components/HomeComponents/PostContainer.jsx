@@ -64,7 +64,7 @@ const PostContainer = () => {
   const createPost = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/post/create-post",
+        `${import.meta.env.VITE_SERVER_URL}/post/create-post`,
         {
           caption,
           img,

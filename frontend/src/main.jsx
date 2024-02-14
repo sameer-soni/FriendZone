@@ -8,7 +8,7 @@ import { MyContextProvier } from "./context/MyContext";
 import "./pages/custom-scrollbar.css";
 import socketIOClient from "socket.io-client";
 
-const socket = socketIOClient("http://localhost:8000");
+const socket = socketIOClient(`${import.meta.env.VITE_SERVER_URL}`);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

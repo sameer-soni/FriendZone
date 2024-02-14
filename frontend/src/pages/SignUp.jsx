@@ -96,7 +96,7 @@ const Signup = () => {
     try {
       // Send a POST request to the backend API to create a new account
       const { data } = await axios.post(
-        "http://localhost:8000/auth/signup",
+        `${import.meta.env.VITE_SERVER_URL}/auth/signup`,
         {
           username,
           email,

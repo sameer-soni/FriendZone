@@ -31,7 +31,7 @@ const Feed = ({ feed }) => {
     console.log(feed);
     try {
       const response = await axios.post(
-        "http://localhost:8000/post/add-comment",
+        `${import.meta.env.VITE_SERVER_URL}/post/add-comment`,
         {
           comment,
           post: feed,

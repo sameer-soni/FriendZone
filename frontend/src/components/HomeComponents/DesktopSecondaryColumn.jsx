@@ -25,7 +25,7 @@ const DesktopSecondaryColumn = () => {
     console.log("in fetch friend req");
     try {
       const { data } = await axios.get(
-        "http://localhost:8000/friend/fetchFriendRequest",
+        `${import.meta.env.VITE_SERVER_URL}/friend/fetchFriendRequest`,
         { withCredentials: true }
       );
 
@@ -65,7 +65,7 @@ const DesktopSecondaryColumn = () => {
     const fetchSuggestedUsers = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:8000/user/getSuggestedUsers",
+          `${import.meta.env.VITE_SERVER_URL}/user/getSuggestedUsers`,
           { withCredentials: true }
         );
         // console.log(data.getSuggestedUsers);

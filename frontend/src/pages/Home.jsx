@@ -12,7 +12,7 @@ export default function Home() {
   const fetchPosts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8000/post/fetch-post",
+        `${import.meta.env.VITE_SERVER_URL}/post/fetch-post`,
         { withCredentials: true }
       );
       setPosts(data.posts);

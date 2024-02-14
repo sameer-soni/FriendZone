@@ -11,7 +11,7 @@ const Notifications = () => {
 
   const fetchNotification = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8000/notification", {
+      const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/notification`, {
         withCredentials: true,
       });
       console.log("notification--> ", data.noti);

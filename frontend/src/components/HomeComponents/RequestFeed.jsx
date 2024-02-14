@@ -15,7 +15,7 @@ const RequestFeed = ({ user }) => {
     console.log(u);
     try {
       const response = await axios.post(
-        "http://localhost:8000/friend/respond_FriendRequest",
+        `${import.meta.env.VITE_SERVER_URL}/friend/respond_FriendRequest`,
         {
           status: "accept",
           requested_user_Id: u.user, // .user => is this user's id
@@ -42,7 +42,7 @@ const RequestFeed = ({ user }) => {
     console.log(u);
     try {
       const response = await axios.post(
-        "http://localhost:8000/friend/respond_FriendRequest",
+        `${import.meta.env.VITE_SERVER_URL}/friend/respond_FriendRequest`,
         {
           status: "decline",
           requested_user_Id: u.user, // .user => is this user's id

@@ -28,7 +28,7 @@ const ProfileDropDown = () => {
     try {
       // Send a POST request to the logout endpoint to clear the session
       const { data } = await axios.post(
-        "http://localhost:8000/auth/logout",
+        `${import.meta.env.VITE_SERVER_URL}/auth/logout`,
         null,
         {
           withCredentials: true,

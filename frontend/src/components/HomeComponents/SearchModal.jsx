@@ -36,7 +36,7 @@ const SearchModal = ({ open, setOpen }) => {
     setQuery(e.target.value);
     try {
       const { data } = await axios.get(
-        `http://localhost:8000/user/searchUser?searchInput=${e.target.value}`,
+        `${import.meta.env.VITE_SERVER_URL}/user/searchUser?searchInput=${e.target.value}`,
         { withCredentials: true }
       );
 
@@ -61,7 +61,7 @@ const SearchModal = ({ open, setOpen }) => {
   const addFriend = async (u) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/friend/sendFriendRequest",
+        `${import.meta.env.VITE_SERVER_URL}/friend/sendFriendRequest`,
         {
           recieverId: u._id,
         },
