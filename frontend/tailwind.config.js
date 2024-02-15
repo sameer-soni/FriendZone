@@ -12,7 +12,7 @@ export default {
         "contact-shade": "#231830",
       },
       backgroundImage: {
-        "auth-bg-image": "url('./src/assets/Login-Sign-BackgroundImage.avif')",
+        "auth-bg-image": "url('./src/assets/Login-Sign-BackgroundImage.png')",
       },
     },
   },

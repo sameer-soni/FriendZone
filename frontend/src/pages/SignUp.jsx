@@ -72,8 +72,6 @@ const Signup = () => {
           setImage(data.url.toString());
           setLoading(false);
         });
-
-      console.log(res);
     }
   };
 

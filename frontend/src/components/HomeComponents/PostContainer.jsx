@@ -56,8 +56,16 @@ const PostContainer = () => {
           setImg(data.url.toString());
           setLoading(false);
           // console.log("this is url-> ", data.url.toString());
+          toast({
+            title: `pic uploaded`,
+            status: "success",
+            duration: 1800,
+            position: "top",
+            isClosable: true,
+          });
         });
     }
+    
   };
 
   //function to create post
@@ -139,11 +147,10 @@ const PostContainer = () => {
               <div className="absolute inset-y-0 right-6 flex items-center mr-6 ">
                 <Button
                   type="button"
-                  className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-white shadow-sm focus:outline-none focus:ring-2 border-white p-1"
+                  className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-white shadow-sm focus:outline-none focus:ring-2 border-white p-1 border"
                 >
                   <BiImageAdd className="h-4 w-4" aria-hidden="true" />
                 </Button>
-                {/* Input field for uploading an image */}
                 <InputFile
                   id="userPhoto"
                   name="userPhoto"
@@ -151,20 +158,20 @@ const PostContainer = () => {
                 />
               </div>
               {/* Post Image Button */}
-              <div className="absolute inset-y-0 right-6 flex items-center pr-6">
+              {/* <div className="absolute inset-y-0 right-6 flex items-center pr-6">
                 <Button
                   type="button"
                   className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-white shadow-sm focus:outline-none focus:ring-2 border-white p-1"
                 >
                   <BiImageAdd className="h-4 w-4" aria-hidden="true" />
-                </Button>
-                {/* Input field for uploading an image */}
+                </Button>                
+
                 <InputFile
                   id="userPhoto"
                   name="userPhoto"
                   onChange={(e) => console.log("image uploaded")} // Log a message when an image is uploaded (you may implement image upload logic here)
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
