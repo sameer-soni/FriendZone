@@ -15,7 +15,7 @@ const DeveloperSlogan = () => {
         rel="noreferrer"
       >
         {/* Display the developer's name with an underline */}
-        <span className="underline underline-offset-4">Sameer</span>
+        <span className="underline underline-offset-4">Praveen</span>
       </a>
       {/* Display the text "With" */}
       With

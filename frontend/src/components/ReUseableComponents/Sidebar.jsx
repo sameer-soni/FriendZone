@@ -2,6 +2,8 @@ import { navigation } from "../../constants/Constants";
 import UserProfileCard from "./UserProfileCard";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Chatbot from "../../../../chatbot/chatbot.jsx";
+
 
 const Sidebar = () => {
   const [currentPage, setCurrentPage] = useState("");
@@ -40,7 +42,15 @@ const Sidebar = () => {
                     {/* Link name */}
                     {item.name}
                   </Link>
+
                 ))}
+                <Link
+                    to="/chatbot" // Adjust the path as per your routing configuration
+                    className="border-l-4 border-main-shade hover:border-primary-shade hover:text-primary-shade group flex items-center py-2 text-sm font-medium transition duration-500 ease-in-out px-5 text-text-color"
+                   >
+               
+                 ; )    Chatbot
+                </Link>
               </div>
             </nav>
           </div>

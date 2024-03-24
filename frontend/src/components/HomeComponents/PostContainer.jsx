@@ -7,12 +7,17 @@ import { BiImageAdd } from "react-icons/bi";
 import { Button, InputFile } from "../index";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
+import Chatbot from "../../../../chatbot/chatbot";
+import { Link } from "react-router-dom";
+
+
 
 const PostContainer = () => {
   // Access the loggedUser from the context using useContext hook
   const { loggedUser, fetchPostAgain, setFetchPostAgain } =
     useContext(MyContext);
-
+    
+    const [sentimentResult, setSentimentResult] = useState(null);
   const [caption, setCaption] = useState("");
   const [img, setImg] = useState("");
 
@@ -24,7 +29,7 @@ const PostContainer = () => {
     setLoading(true);
 
     toast({
-      title: `pic uploading....`,
+      title: "pic uploading....",
       // status: "success",
       duration: 2500,
       position: "top",
@@ -74,7 +79,7 @@ const PostContainer = () => {
       console.log(response);
       setCaption("");
       toast({
-        title: `Posted`,
+        title: Posted,
         status: "success",
         duration: 1800,
         position: "top",
@@ -84,7 +89,35 @@ const PostContainer = () => {
     } catch (error) {
       console.log(error);
     }
+    try {
+      const response = await fetch('http://localhost:5000/analyze_sentiment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: caption }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
+      if (data.sentiment !== null) {
+        setSentimentResult(data.sentiment.toString());
+      } else {
+        // Handle the case where data.sentiment is null (if needed)
+        setSentimentResult("Sentiment data is null");
+      }
+      
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   };
+
+useEffect(() => {
+    console.log(sentimentResult);
+  }, [sentimentResult]);
 
   return (
     // Post Container - a flexbox container with a background color, padding, and rounded corners
@@ -115,7 +148,7 @@ const PostContainer = () => {
                 id="search"
                 name="search"
                 className="block w-full rounded-md font-bold border border-transparent bg-seconday-shade text-text-color py-2 pl-10 pr-3 text-sm sm:text-sm"
-                placeholder={`What's on your mind ${loggedUser?.username.toUpperCase()}?`} // Placeholder text with the user's username (if available)
+                placeholder={"What's on your mind ?"} // Placeholder text with the user's username (if available)
                 type="search"
                 autoComplete="off"
                 value={caption}
@@ -130,6 +163,7 @@ const PostContainer = () => {
                     type="button"
                     className="inline-flex items-center rounded-full border border-transparent bg-primary-shade text-white shadow-sm focus:outline-none focus:ring-2 border-white p-1"
                     clickHandler={createPost}
+                
                   >
                     <AiOutlineSend className="h-4 w-4" aria-hidden="true" />
                   </Button>
@@ -169,7 +203,30 @@ const PostContainer = () => {
           </div>
         </div>
       </div>
+      {/* Conditional rendering for displaying anti-depression message */}
+      {sentimentResult === "0" && (
+        <div className="bg-gray-200 text-center p-4 rounded-md">
+          <p className="text-lg text-gray-800">
+           Don't be depressed. If you need help, feel free to talk to our assistant.
+            </p>
+            <p className="text-sm text-gray-600 mt-2">
+              You can start a conversation with our assistant 
+              <Link to="/chatbot" className="ml-1 underline">
+              here
+            </Link>.
+               
+            </p>
+
+          <p className="text-sm text-gray-600 mt-2">
+            Here are some resources:
+            <a href="https://example.com" className="ml-1 underline">
+              Example Anti-Depression Center
+            </a>
+          </p>
+        </div>
+      )}
     </div>
+
   );
 };
 

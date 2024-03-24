@@ -53,11 +53,14 @@ const Stories = () => {
                     className="border-white rounded-full relative"
                     onClick={() => console.log("added")}
                   >
-                    <img
-                      className="inline-block h-9 w-9 rounded-full object-cover"
-                      src={loggedUserStory.user.pic}
-                      alt=""
-                    />
+                    {loggedUserStory && loggedUserStory.user && loggedUserStory.user.pic && (
+  <img
+    className="inline-block h-9 w-9 rounded-full object-cover"
+    src={loggedUserStory.user.pic}
+    alt=""
+  />
+)}
+
                     <IoMdAdd
                       className="w-full h-full p-1 rounded-full bg-primary-shade absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 duration-500"
                       aria-hidden="true"

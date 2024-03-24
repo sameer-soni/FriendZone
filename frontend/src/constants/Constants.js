@@ -12,7 +12,7 @@ export const navigation = [
   { name: "Photos", href: "/photos", icon: PhotoIcon, current: false },
   { name: "Friends", href: "/friends", icon: UserGroupIcon, current: false },
   {
-    name: "Notifications",
+    name: "notification",
     href: "/notifications",
     icon: BellIcon,
     current: false,
